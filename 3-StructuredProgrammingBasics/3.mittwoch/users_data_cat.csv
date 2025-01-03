@@ -1,0 +1,11 @@
+id,fullname,username,password,birthdate,category
+1,Tomas Pinolini,tomas,111,2003-01-01,c
+2,duenito,duenito,123,1940-01-01,o
+3,Anna Smith,asmith,222,1985-03-15,c
+4,Robert Brown,rbrown,333,1972-07-20,o
+5,Emily Davis,edavis,444,1995-12-05,c
+6,Michael Johnson,mjohnson,555,1960-11-30,o
+7,Jessica Lee,jlee,666,1990-05-25,c
+8,David Clark,dclark,777,2000-09-10,o
+9,Susan Miller,smiller,888,1988-04-02,c
+10,Chris Wilson,cwilson,999,1975-08-19,o
