@@ -64,23 +64,23 @@
                 <table class="table table-bordered table-striped">
                     <thead class="table-dark">
                         <tr>
-                            <th>Select</th>
-                            <th>Code</th>
-                            <th>Description</th>
-                            <th>Price</th>
-                            <th>State</th>
+                            <th style="width: 10%;">Select</th>
+                            <th style="width: 10%;">Code</th>
+                            <th style="width: 80%;">Description</th>
+                            <th style="width: 20%;">Price</th>
+                            <th style="width: 10%;">State</th>
                         </tr>    
                     </thead>
                     <tbody>
                         <?php foreach ($prods as $prod): ?>
                             <tr>
-                                <td>
+                                <td style="width: 10%;">
                                     <input type="checkbox" value="<?= $prod["state"] . " " . $prod["id_products"] ?>" name="changes[]" />
                                 </td>
-                                <td><?= htmlspecialchars($prod["id_products"]) ?></td>
-                                <td><?= htmlspecialchars($prod["description"]) ?></td>
-                                <td><?= htmlspecialchars($prod["price"]) ?></td>
-                                <td><?= htmlspecialchars($prod["state"]) ?></td>
+                                <td style="width: 10%;"><?= htmlspecialchars($prod["id_products"]) ?></td>
+                                <td style="width: 80%;"><?= htmlspecialchars($prod["description"]) ?></td>
+                                <td style="width: 20%;"><?= htmlspecialchars($prod["price"]) ?></td>
+                                <td style="width: 10%;"><?= htmlspecialchars($prod["state"]) ?></td>
                             </tr>
                         <?php endforeach; ?>
                     </tbody>
@@ -89,6 +89,8 @@
             <button type="submit" value="SubmitSt" name="SubmitSt" class="btn btn-primary">Update State</button>
         </form>
     </div>
+
+    <a href="../logout.php" class="btn btn-danger">Logout</a>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>

@@ -1,5 +1,10 @@
 <?php
     session_start();
+    $idClient = $_SESSION["id_users"];
+    include("../7-dbconnection.php"); 
+
+    $sqlPr = "SELECT * FROM products WHERE state = '1'";
+    $prods = mysqli_query($mysqli, $sqlPr);
 ?>
 
 <!DOCTYPE html>
@@ -37,9 +42,45 @@
     </nav>
     <!-- Main Content -->
     <div class="container mt-5">
-        
+        <h3>Update Product State</h3>
+        <form action="" method="post">
+            <div class="table-responsive">
+                <table class="table table-bordered table-striped">
+                    <thead class="table-dark">
+                        <tr>
+                            <th style="width: 10%;">Select</th>
+                            <th style="width: 80%;">Description</th>
+                            <th style="width: 20%;">Price</th>
+                        </tr>    
+                    </thead>
+                    <tbody>
+                        <?php foreach ($prods as $prod): ?>
+                            <tr>
+                                <td style="width: 10%;">
+                                    <input type="checkbox" value="<?= $prod["id_products"]?>" name="purchases[]" />
+                                </td>
+                                <td style="width: 80%;"><?= htmlspecialchars($prod["description"]) ?></td>
+                                <td style="width: 20%;"><?= htmlspecialchars($prod["price"]) ?></td>
+                            </tr>
+                        <?php endforeach; ?>
+                    </tbody>
+                </table>
+            </div>
+            <button type="submit" value="SubmitPur" name="SubmitPur" class="btn btn-primary">Purchase</button>
+        </form>
     </div>
+
+    <a href="../logout.php" class="btn btn-danger">Logout</a>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
+
+<?php
+    if (isset($_POST["SubmitPur"])) {
+        foreach ($_POST["purchases"] as $idP) {
+            $sqlNewPur = "INSERT into purchases (id_users, id_product) VALUES ('$idClient', '$idP')";
+            mysqli_query($mysqli, $sqlNewPur);
+        }
+    }
+?>
