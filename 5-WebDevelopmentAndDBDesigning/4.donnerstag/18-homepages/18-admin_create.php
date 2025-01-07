@@ -1,6 +1,6 @@
 <?php
     session_start();  
-    include("../7-dbconnection.php"); 
+    include("../16-dbconnection.php"); 
     $idAdmin = $_SESSION["id_users"];
 
     $sqlPr = "SELECT * FROM products WHERE id_admin = '$idAdmin'";
@@ -41,7 +41,13 @@
         </div>
     </nav>
 
-    <!-- Main Content -->
+    <!-- Buttons -->
+    <div class="container mt-5">    
+        <a href="20-admin_charts.php" class="btn btn-primary">Go to charts</a>
+        <a href="21-admin_update.php" class="btn btn-primary">Update products state</a>
+    </div>
+
+    <!-- Main container -->
     <div class="container mt-5">
         <h3>New Product</h3>
         <form action="" method="POST" class="mb-5">
@@ -57,40 +63,10 @@
         </form>
     </div>
 
+    <!-- Log out button -->
     <div class="container mt-5">
-        <h3>Update Product State</h3>
-        <form action="" method="post">
-            <div class="table-responsive">
-                <table class="table table-bordered table-striped">
-                    <thead class="table-dark">
-                        <tr>
-                            <th style="width: 10%;">Select</th>
-                            <th style="width: 10%;">Code</th>
-                            <th style="width: 80%;">Description</th>
-                            <th style="width: 20%;">Price</th>
-                            <th style="width: 10%;">State</th>
-                        </tr>    
-                    </thead>
-                    <tbody>
-                        <?php foreach ($prods as $prod): ?>
-                            <tr>
-                                <td style="width: 10%;">
-                                    <input type="checkbox" value="<?= $prod["state"] . " " . $prod["id_products"] ?>" name="changes[]" />
-                                </td>
-                                <td style="width: 10%;"><?= htmlspecialchars($prod["id_products"]) ?></td>
-                                <td style="width: 80%;"><?= htmlspecialchars($prod["description"]) ?></td>
-                                <td style="width: 20%;"><?= htmlspecialchars($prod["price"]) ?></td>
-                                <td style="width: 10%;"><?= htmlspecialchars($prod["state"]) ?></td>
-                            </tr>
-                        <?php endforeach; ?>
-                    </tbody>
-                </table>
-            </div>
-            <button type="submit" value="SubmitSt" name="SubmitSt" class="btn btn-primary">Update State</button>
-        </form>
+        <a href="../19-logout.php" class="btn btn-danger">Logout</a>
     </div>
-
-    <a href="../15-logout.php" class="btn btn-danger">Logout</a>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>

@@ -1,7 +1,7 @@
 <?php
     session_start();
     $idClient = $_SESSION["id_users"];
-    include("../7-dbconnection.php"); 
+    include("../16-dbconnection.php"); 
 
     $sqlPr = "SELECT * FROM products WHERE state = '1'";
     $prods = mysqli_query($mysqli, $sqlPr);
@@ -69,9 +69,10 @@
             <button type="submit" value="SubmitPur" name="SubmitPur" class="btn btn-primary">Purchase</button>
         </form>
     </div>
-
-    <a href="../15-logout.php" class="btn btn-danger">Logout</a>
-
+    
+    <div class="container mt-5">
+        <a href="../19-logout.php" class="btn btn-danger">Logout</a>
+    </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
