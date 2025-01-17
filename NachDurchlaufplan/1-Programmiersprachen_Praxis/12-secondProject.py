@@ -14,7 +14,7 @@ while True:
 
     choice = int(input("Enter your choice (1-7): "))
 
-    if choice in [1, 2, 3, 4, 5, 6]:
+    if choice == 1 or choice == 2 or choice == 3 or choice == 4 or choice == 5 or choice == 6:
         # Get two numbers from the user
         num1 = int(input("Enter the first number: "))
         num2 = int(input("Enter the second number: "))
