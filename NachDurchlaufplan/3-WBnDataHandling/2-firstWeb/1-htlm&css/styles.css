@@ -1,0 +1,66 @@
+/* General Styles */
+body {
+    font-family: Arial, sans-serif; /* Set a clean, readable font */
+    line-height: 1.6; /* Improve readability with consistent line spacing */
+    margin: 0;
+    padding: 20px;
+    background-color: #f4f4f9; /* Light gray background */
+    color: #333; /* Dark text for contrast */
+}
+
+/* Heading Styles */
+h1 {
+    text-align: center; /* Center the main heading */
+    color: #444; /* Dark gray color */
+    margin-bottom: 20px;
+}
+
+h2 {
+    color: #555; /* Slightly lighter gray for section headings */
+    border-bottom: 2px solid #ddd; /* Underline section headings */
+    padding-bottom: 5px;
+    margin-top: 20px;
+}
+
+/* Section Styles */
+section {
+    margin-bottom: 20px; /* Add space between sections */
+    padding: 15px; /* Add padding inside sections */
+    border: 1px solid #ccc; /* Light border around sections */
+    border-radius: 8px; /* Rounded corners */
+    background-color: #fff; /* White background for sections */
+}
+
+/* Paragraph Styles */
+p {
+    margin-bottom: 10px; /* Add space between paragraphs */
+}
+
+/* Link Styles */
+a {
+    color: #007bff; /* Bright blue for links */
+    text-decoration: none; /* Remove underline by default */
+}
+
+a:hover {
+    text-decoration: underline; /* Add underline on hover */
+    color: #0056b3; /* Darker blue on hover */
+}
+
+/* Image Styles */
+img {
+    display: block; /* Center image block */
+    margin: 10px auto; /* Center image horizontally with auto margin */
+    border: 2px solid #ccc; /* Add a border around the image */
+    border-radius: 8px; /* Rounded corners for the image */
+}
+
+/* List Styles */
+ul, ol {
+    margin: 10px 0; /* Add vertical spacing */
+    padding-left: 20px; /* Indent the list */
+}
+
+li {
+    margin-bottom: 5px; /* Add spacing between list items */
+}
