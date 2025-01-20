@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bootstrap Exercises</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="bg-light text-dark">
+    <div class="container my-4">
+        <h1 class="text-center mb-4">Bootstrap Exercises</h1>
+        <p class="text-center">Explore different Bootstrap components and utilities in this consolidated page.</p>
+
+        <!-- Section 1: Buttons -->
+        <section id="buttons">
+            <h2>Exercise 1: Buttons</h2>
+            <p>Click the button below:</p>
+            <button class="btn btn-primary">Primary Button</button>
+            <button class="btn btn-success">Success Button</button>
+            <button class="btn btn-danger">Danger Button</button>
+        </section>
+
+        <hr>
+
+        <!-- Section 2: Cards -->
+        <section id="cards">
+            <h2>Exercise 2: Cards</h2>
+            <div class="card" style="width: 18rem;">
+                <img src="dog.jpg" class="card-img-top" alt="Placeholder Image">
+                <div class="card-body">
+                    <h5 class="card-title">Card Title</h5>
+                    <p class="card-text">This is a simple card example using Bootstrap.</p>
+                    <a href="#" class="btn btn-primary">Go somewhere</a>
+                </div>
+            </div>
+            <div class="card" style="width: 18rem;">
+                <img src="dog.jpg" class="card-img-top" alt="Placeholder Image">
+                <div class="card-body">
+                    <h5 class="card-title">Card Title</h5>
+                    <p class="card-text">This is a simple card example using Bootstrap.</p>
+                    <a href="#" class="btn btn-primary">Go somewhere</a>
+                </div>
+            </div>
+            <div class="card" style="width: 18rem;">
+                <img src="dog.jpg" class="card-img-top" alt="Placeholder Image">
+                <div class="card-body">
+                    <h5 class="card-title">Card Title</h5>
+                    <p class="card-text">This is a simple card example using Bootstrap.</p>
+                    <a href="#" class="btn btn-primary">Go somewhere</a>
+                </div>
+            </div>
+        </section>
+
+        <hr>
+
+        <!-- Section 3: Navbar -->
+        <section id="navbar">
+            <h2>Exercise 3: NavBar</h2>
+            <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+                <div class="container-fluid">
+                    <a class="navbar-brand" href="#">Navbar</a>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarNav">
+                        <ul class="navbar-nav">
+                            <li class="nav-item">
+                                <a class="nav-link active" href="#">Home</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">Features</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">Pricing</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </section>
+
+        <hr>
+
+        <!-- Section 4: Grid Layout -->
+        <section id="grid">
+            <h2>Exercise 4: Grid Layout</h2>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="card" style="width: 18rem;">
+                        <img src="dog.jpg" class="card-img-top" alt="Placeholder Image">
+                        <div class="card-body">
+                            <h5 class="card-title">Card Title</h5>
+                            <p class="card-text">This is a simple card example using Bootstrap.</p>
+                            <a href="#" class="btn btn-primary">Go somewhere</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card" style="width: 18rem;">
+                        <img src="dog.jpg" class="card-img-top" alt="Placeholder Image">
+                        <div class="card-body">
+                            <h5 class="card-title">Card Title</h5>
+                            <p class="card-text">This is a simple card example using Bootstrap.</p>
+                            <a href="#" class="btn btn-primary">Go somewhere</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card" style="width: 18rem;">
+                        <img src="dog.jpg" class="card-img-top" alt="Placeholder Image">
+                        <div class="card-body">
+                            <h5 class="card-title">Card Title</h5>
+                            <p class="card-text">This is a simple card example using Bootstrap.</p>
+                            <a href="#" class="btn btn-primary">Go somewhere</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <hr>
+
+        <!-- Section 5: Modals -->
+        <section id="modals">
+            <h2>Exercise 5: Modals</h2>
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                Open Modal
+            </button>
+
+            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Modal Title</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            This is the content of the modal.
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-primary">Save changes</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <hr>
+
+        <!-- Section 6: Spacing -->
+        <section id="spacing">
+            <h2>Exercise 6: Margin, Border, and Padding</h2>
+            <div class="card my-4" style="width: 18rem;">
+                <div class="card-body p-5 border-success">
+                    <h5 class="card-title">Combined Styles</h5>
+                    <p class="card-text">This card demonstrates margin, padding, and a custom border.</p>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
