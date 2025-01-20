@@ -1,0 +1,14 @@
+Collaborate with Branches
+    - Objective: Use branching to manage changes.
+    - Create a new branch:
+        . git branch feature-branch
+        . git switch feature-branch
+    - Modify hello.txt (e.g., add a line This is a feature branch.).
+    - Add and commit the changes:
+        . git add hello.txt
+        . git commit -m "Add a feature branch message"
+    - Switch back to the main branch and merge the changes:
+        . git switch main
+        . git merge feature-branch
+        . git push origin main
+    - Checking Task: Check GitHub to confirm the merged changes.

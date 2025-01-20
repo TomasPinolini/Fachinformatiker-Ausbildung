@@ -1,0 +1,12 @@
+Install Git and Configure It
+    Objective: Set up Git and configure user details.
+    Instructions:
+    - Install Git (download from git-scm.com).
+    - Open a terminal or command prompt.
+    - Run the following commands:
+        . git --version
+        . git config --global user.name "Your Name"
+        . git config --global user.email "youremail@example.com"
+
+    - Checking Task: Confirm Git is installed and configured:
+        . Run git config --list and check the output.
