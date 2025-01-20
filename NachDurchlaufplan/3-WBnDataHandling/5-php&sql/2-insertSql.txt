@@ -1,0 +1,32 @@
+------------------------------------ Student --------------------------------------
+
+CREATE TABLE Students (
+    StudentID INTEGER PRIMARY KEY,  -- A unique ID for each student
+    Name TEXT NOT NULL,             -- The student's name (cannot be empty)
+    Age INTEGER,                    -- The student's age
+    Grade TEXT                      -- The grade the student is in
+);
+
+
+INSERT INTO Students (StudentID, Name, Age, Grade)
+VALUES
+    (1, 'Alice', 12, '6th'),
+    (2, 'Bob', 11, '5th'),
+    (3, 'Charlie', 13, '7th');
+
+------------------------------------ Books --------------------------------------
+
+CREATE TABLE Books (
+    BookID INTEGER PRIMARY KEY,  -- Unique ID for each book
+    Title TEXT NOT NULL,         -- The title of the book
+    Author TEXT NOT NULL,        -- The author of the book
+    PublishedYear INTEGER,       -- The year the book was published
+    Available BOOLEAN            -- Whether the book is available (true/false)
+);
+
+
+INSERT INTO Books (BookID, Title, Author, PublishedYear, Available)
+VALUES
+    (1, 'Harry Potter and the Sorcerer\'s Stone', 'J.K. Rowling', 1997, TRUE),
+    (2, 'The Hobbit', 'J.R.R. Tolkien', 1937, FALSE),
+    (3, '1984', 'George Orwell', 1949, TRUE);

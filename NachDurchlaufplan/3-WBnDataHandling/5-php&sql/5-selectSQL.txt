@@ -1,0 +1,11 @@
+SELECT * FROM Students;
+
+SELECT Name, Grade FROM Students;
+
+SELECT * FROM Students WHERE Grade = '6th';
+
+SELECT * FROM Students WHERE Age > 12;
+
+SELECT * FROM Students WHERE Grade = '6th' AND Age > 12;
+
+SELECT * FROM Students WHERE Grade = '5th' OR Grade = '6th';
