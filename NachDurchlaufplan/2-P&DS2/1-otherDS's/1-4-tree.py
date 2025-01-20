@@ -16,7 +16,7 @@ print("Left child of root:", root.left.value)
 print("Right child of root:", root.right.value)
 
 
-#1.4.2 Manually Traverse a Tree Inorder.
+#1.4.2 Manually Traverse a Tree In order.
 class Node:
     def __init__(self, value):
         self.value = value
@@ -30,7 +30,7 @@ root.right = Node(15)
 root.left.left = Node(2)
 root.left.right = Node(7)
 
-# Inorder traversal without recursion
+# In order traversal without recursion
 stack = []
 current = root
 print("Inorder Traversal:", end=" ")
