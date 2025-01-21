@@ -25,6 +25,16 @@ $otherChatsQuery = "SELECT c.chat_id, c.chat_name
                         WHERE cp.user_id = $user_id
                     )";
 $otherChatsResult = mysqli_query($mysqli, $otherChatsQuery);
+
+// Handle form submission for chat selection
+if (isset($_POST['join_chat'])) {
+    $selectedChatId = intval($_POST['join_chat']); // Sanitize input
+    $_SESSION['chat_id'] = $selectedChatId; // Set the chat ID in the session
+
+    // Redirect to the chat page or refresh
+    header("Location: 8-chat.php");
+    exit;
+}
 ?>
 
 <!DOCTYPE html>
@@ -42,13 +52,16 @@ $otherChatsResult = mysqli_query($mysqli, $otherChatsQuery);
         <!-- Section: Chats User is Part Of -->
         <h3 class="mt-4">Chats You Are Part Of</h3>
         <?php if (mysqli_num_rows($joinedChatsResult) > 0): ?>
-            <ul class="list-group">
-                <?php while ($chat = mysqli_fetch_assoc($joinedChatsResult)): ?>
-                    <li class="list-group-item">
-                        <?= htmlspecialchars($chat['chat_name']) ?>
-                    </li>
-                <?php endwhile; ?>
-            </ul>
+            <form method="POST">
+                <ul class="list-group">
+                    <?php while ($chat = mysqli_fetch_assoc($joinedChatsResult)): ?>
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            <?= htmlspecialchars($chat['chat_name']) ?>
+                            <button type="submit" name="join_chat" value="<?= htmlspecialchars($chat['chat_id']) ?>" class="btn btn-primary btn-sm">Enter</button>
+                        </li>
+                    <?php endwhile; ?>
+                </ul>
+            </form>
         <?php else: ?>
             <p class="text-muted">You are not part of any chats yet.</p>
         <?php endif; ?>
@@ -56,14 +69,16 @@ $otherChatsResult = mysqli_query($mysqli, $otherChatsQuery);
         <!-- Section: Chats User is NOT Part Of -->
         <h3 class="mt-4">Other Chats</h3>
         <?php if (mysqli_num_rows($otherChatsResult) > 0): ?>
-            <ul class="list-group">
-                <?php while ($chat = mysqli_fetch_assoc($otherChatsResult)): ?>
-                    <li class="list-group-item">
-                        <?= htmlspecialchars($chat['chat_name']) ?>
-                        <a href="8-chat.php?chat_id=<?= $chat['chat_id'] ?>" class="btn btn-sm btn-primary float-end">Join</a>
-                    </li>
-                <?php endwhile; ?>
-            </ul>
+            <form method="POST">
+                <ul class="list-group">
+                    <?php while ($chat = mysqli_fetch_assoc($otherChatsResult)): ?>
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            <?= htmlspecialchars($chat['chat_name']) ?>
+                            <button type="submit" name="join_chat" value="<?= htmlspecialchars($chat['chat_id']) ?>" class="btn btn-primary btn-sm">Join</button>
+                        </li>
+                    <?php endwhile; ?>
+                </ul>
+            </form>
         <?php else: ?>
             <p class="text-muted">No other chats available.</p>
         <?php endif; ?>
