@@ -1,53 +1,37 @@
 <?php
 session_start();
-require 'dbconnection.php';
+require '1-dbconnection.php';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $action = $_POST['action']; // Either 'login' or 'register'
+    $action = $_POST['action'];
+    $username = $_POST['username'];
+    $password = $_POST['password'];
 
     if ($action === 'register') {
-        // Registration logic
-        $username = htmlspecialchars($_POST['username']);
-        $password = htmlspecialchars($_POST['password']);
-        $hashedPassword = password_hash($password, PASSWORD_BCRYPT);
+        $query = "SELECT * FROM users WHERE username = '$username'";
+        $result = mysqli_query($mysqli, $query);
 
-        // Check if username exists
-        $stmt = $conn->prepare("SELECT * FROM users WHERE username = ?");
-        $stmt->bind_param("s", $username);
-        $stmt->execute();
-        $result = $stmt->get_result();
-
-        if ($result->num_rows > 0) {
-            echo "Username already exists. Please choose another one.";
+        if (mysqli_num_rows($result) > 0) {
+            echo "Username already exists. Choose another one.";
         } else {
-            // Insert new user
-            $stmt = $conn->prepare("INSERT INTO users (username, password) VALUES (?, ?)");
-            $stmt->bind_param("ss", $username, $hashedPassword);
-            if ($stmt->execute()) {
+            $query = "INSERT INTO users (username, password) VALUES ('$username', '$password')";
+            if (mysqli_query($mysqli, $query)) {
                 echo "Registration successful. Please log in.";
             } else {
-                echo "Error during registration: " . $stmt->error;
+                echo "Error during registration.";
             }
         }
     } elseif ($action === 'login') {
-        // Login logic
-        $username = htmlspecialchars($_POST['username']);
-        $password = htmlspecialchars($_POST['password']);
-
-        // Check if user exists
-        $stmt = $conn->prepare("SELECT * FROM users WHERE username = ?");
-        $stmt->bind_param("s", $username);
-        $stmt->execute();
-        $result = $stmt->get_result();
-        $user = $result->fetch_assoc();
-
-        if ($user && password_verify($password, $user['password'])) {
-            $_SESSION['user_id'] = $user['id_user'];
+        $query = "SELECT * FROM users WHERE username = '$username'";
+        $result = mysqli_query($mysqli, $query);
+        $user = mysqli_fetch_assoc($result);
+        if($user['username'] && $password == $user['password']){
+            $_SESSION['user_id'] = $user['user_id'];
             $_SESSION['username'] = $user['username'];
-            header("Location: chatroom.php");
+            header("Location: 4-menu.php");
             exit();
         } else {
-            echo "Invalid credentials.";
+            echo "Invalid username or password.";
         }
     }
 }
@@ -63,7 +47,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 </head>
 <body class="bg-light text-dark">
     <div class="container my-4">
-        <h1 class="text-center">Login or Register</h1>
+        <hr>
         <div class="row">
             <!-- Login Form -->
             <div class="col-md-6">
