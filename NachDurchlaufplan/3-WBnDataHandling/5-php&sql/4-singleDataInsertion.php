@@ -2,7 +2,7 @@
 $servername = "localhost";
 $username = "root";
 $password = "";
-$dbname = "5-phpandsql";
+$dbname = "singleuser_crud";
 
 // Create connection
 $conn = new mysqli($servername, $username, $password, $dbname);

@@ -1,5 +1,5 @@
 <?php
-$conn = mysqli_connect("localhost", "root", "", "5-phpandsql");
+$conn = mysqli_connect("localhost", "root", "", "singleuser_crud");
 
 // Initialize message
 $message = "";
@@ -24,8 +24,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $message = "Both ID and Description are required!";
     }
 }
-?>
 
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
