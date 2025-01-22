@@ -3,36 +3,43 @@ session_start();
 require '../1-dbconnection.php';
 
 // Check if the user is logged in
-if (!isset($_SESSION['user_id'])) {
+if (!isset($_SESSION['user_id']) || !isset($_SESSION['db_user']) || !isset($_SESSION['db_pass'])) {
     die("You must be logged in to view and join chats.");
 }
 
+// Establish a database connection using the logged-in user's credentials
+$mysqli = connect($_SESSION['db_user'], $_SESSION['db_pass']);
 $user_id = $_SESSION['user_id'];
 
-// Fetch chats the user is NOT part of
+// Fetch chats the user is NOT part of using prepared statements
 $sqlChats = "SELECT c.chat_id, c.chat_name 
              FROM chats c
              WHERE c.chat_id NOT IN (
                  SELECT cp.chat_id 
                  FROM chat_participants cp 
-                 WHERE cp.user_id = $user_id
+                 WHERE cp.user_id = ?
              )";
-$chats = mysqli_query($mysqli, $sqlChats);
+$stmt = $mysqli->prepare($sqlChats);
+$stmt->bind_param("i", $user_id);
+$stmt->execute();
+$result = $stmt->get_result();
+$chats = $result->fetch_all(MYSQLI_ASSOC);
 
 // Handle form submission
-if (isset($_POST['joinChats']) && !empty($_POST['selected_chats'])) {
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['joinChats']) && !empty($_POST['selected_chats'])) {
+    $stmtInsert = $mysqli->prepare("INSERT INTO chat_participants (chat_id, user_id, role) VALUES (?, ?, 'member')");
     foreach ($_POST['selected_chats'] as $chat_id) {
         $chat_id = intval($chat_id); // Sanitize input
-        $query = "INSERT INTO chat_participants (chat_id, user_id, role) VALUES ($chat_id, $user_id, 'member')";
-        mysqli_query($mysqli, $query);
+        $stmtInsert->bind_param("ii", $chat_id, $user_id);
+        $stmtInsert->execute();
     }
+    $stmtInsert->close();
 
     // Redirect back to refresh the list
     header("Location: " . $_SERVER['PHP_SELF']);
     exit;
 }
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -59,15 +66,15 @@ if (isset($_POST['joinChats']) && !empty($_POST['selected_chats'])) {
                         </tr>
                     </thead>
                     <tbody>
-                        <?php if (mysqli_num_rows($chats) > 0): ?>
-                            <?php while ($chat = mysqli_fetch_assoc($chats)): ?>
+                        <?php if (!empty($chats)): ?>
+                            <?php foreach ($chats as $chat): ?>
                                 <tr>
                                     <td>
                                         <input type="checkbox" name="selected_chats[]" value="<?= htmlspecialchars($chat['chat_id']) ?>">
                                     </td>
                                     <td><?= htmlspecialchars($chat['chat_name']) ?></td>
                                 </tr>
-                            <?php endwhile; ?>
+                            <?php endforeach; ?>
                         <?php else: ?>
                             <tr>
                                 <td colspan="2" class="text-center">No chats available to join.</td>

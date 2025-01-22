@@ -3,15 +3,33 @@ session_start();
 require '../1-dbconnection.php'; 
 $message = "";
 
+// Check if the user is logged in
+if (!isset($_SESSION['user_id']) || !isset($_SESSION['db_user']) || !isset($_SESSION['db_pass'])) {
+    die("You must be logged in to create a chat.");
+}
+
+// Establish a database connection using the logged-in user's credentials
+$mysqli = connect($_SESSION['db_user'], $_SESSION['db_pass']);
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    // Sanitize chat name
     $chat_name = htmlspecialchars($_POST['chat_name']);
     $created_by = $_SESSION['user_id']; // Get the user ID from the session
 
-    $sql = "INSERT INTO chats (chat_name, created_by) VALUES ('$chat_name', $created_by)";
-    if (mysqli_query($mysqli, $sql)) {
-        $message = "Chat created successfully!";
+    // Use prepared statement to insert the chat
+    $sql = "INSERT INTO chats (chat_name, created_by) VALUES (?, ?)";
+    $stmt = $mysqli->prepare($sql);
+
+    if ($stmt) {
+        $stmt->bind_param("si", $chat_name, $created_by); // Bind parameters
+        if ($stmt->execute()) {
+            $message = "Chat created successfully!";
+        } else {
+            $message = "Error creating chat: " . $stmt->error;
+        }
+        $stmt->close();
     } else {
-        $message = "Error creating chat: " . mysqli_error($conn);
+        $message = "Error preparing statement: " . $mysqli->error;
     }
 }
 ?>
@@ -35,6 +53,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <button type="submit" class="btn btn-success mt-3">Create Chat</button>
         </form>
 
+        <!-- Show Success/Error Message -->
         <?php if (!empty($message)): ?>
             <div class="alert alert-info mt-3"><?= htmlspecialchars($message) ?></div>
         <?php endif; ?>

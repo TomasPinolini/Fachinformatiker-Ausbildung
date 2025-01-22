@@ -3,35 +3,66 @@ session_start();
 require '1-dbconnection.php';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $action = $_POST['action'];
     $username = $_POST['username'];
     $password = $_POST['password'];
+    $action = $_POST['action'];
+
+    // Admin connection to manage MySQL user accounts
+    $adminConn = connect('root', ''); // Use your MySQL admin credentials
 
     if ($action === 'register') {
-        $query = "SELECT * FROM users WHERE username = '$username'";
-        $result = mysqli_query($mysqli, $query);
+        // Sanitize input
+        $username = $adminConn->real_escape_string($username);
+        $password = $adminConn->real_escape_string($password);
 
-        if (mysqli_num_rows($result) > 0) {
-            echo "Username already exists. Choose another one.";
+        // Check if MySQL user already exists
+        $stmt = $adminConn->prepare("SELECT User FROM mysql.user WHERE User = ?");
+        $stmt->bind_param("s", $username);
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        if ($result->num_rows > 0) {
+            echo "Username already exists as a MySQL user. Choose another one.";
         } else {
-            $query = "INSERT INTO users (username, password) VALUES ('$username', '$password')";
-            if (mysqli_query($mysqli, $query)) {
+            // Create MySQL user
+            $createUserQuery = "CREATE USER '$username'@'localhost' IDENTIFIED BY '$password'";
+            $adminConn->query($createUserQuery) === TRUE;
+            $grantPrivilegesQuery = "GRANT ALL PRIVILEGES ON multiuser_crud.* TO '$username'@'localhost'";
+            $adminConn->query($grantPrivilegesQuery) === TRUE;
+            
+            // Register the user in the application database (users table)
+            $stmt = $adminConn->prepare("INSERT INTO users (username, password) VALUES (?, ?)");
+            $stmt->bind_param("ss", $username, $password);
+            if ($stmt->execute()) {
                 echo "Registration successful. Please log in.";
             } else {
-                echo "Error during registration.";
+                echo "Error during registration: " . $stmt->error;
             }
         }
     } elseif ($action === 'login') {
-        $query = "SELECT * FROM users WHERE username = '$username'";
-        $result = mysqli_query($mysqli, $query);
-        $user = mysqli_fetch_assoc($result);
-        if($user['username'] && $password == $user['password']){
-            $_SESSION['user_id'] = $user['user_id'];
-            $_SESSION['username'] = $user['username'];
-            header("Location: 4-menu.php");
-            exit();
-        } else {
-            echo "Invalid username or password.";
+        // Attempt to connect using user-provided credentials
+        try {
+            $userConn = connect($username, $password); // Dynamic credentials
+            $_SESSION['db_user'] = $username;
+            $_SESSION['db_pass'] = $password;
+
+            // Check if user exists in the application database
+            $stmt = $userConn->prepare("SELECT * FROM users WHERE username = ?");
+            $stmt->bind_param("s", $username);
+            $stmt->execute();
+            $result = $stmt->get_result();
+            $user = $result->fetch_assoc();
+
+            if ($user) {
+                $_SESSION['user_id'] = $user['user_id'];
+                $_SESSION['username'] = $user['username'];
+                header("Location: 4-menu.php");
+                exit();
+            } else {
+                echo "Invalid credentials or user not found.";
+            }
+        } catch (Exception $e) {
+            echo "Login failed: " . $e->getMessage();
         }
     }
 }

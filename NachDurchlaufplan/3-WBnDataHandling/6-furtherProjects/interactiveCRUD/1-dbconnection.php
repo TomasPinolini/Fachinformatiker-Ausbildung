@@ -1,18 +1,9 @@
 <?php
-    $db_server = "localhost";
-    $db_user = "root";
-    $db_pass = "";
-    $db_name = "multiuser_crud";
-
-    $mysqli  = new mysqli(hostname: $db_server, username: $db_user, password: $db_pass, database: $db_name);
-    
+function connect($db_user, $db_pass) {
+    $mysqli = new mysqli(hostname: "localhost", username: $db_user, password: $db_pass, database: "multiuser_crud");
     if ($mysqli->connect_error) {
         die("Connection failed: " . $mysqli->connect_error);
     }
-    // else{
-    //     echo "Done!";
-    // }
     return $mysqli;
-
+}
 ?>
-

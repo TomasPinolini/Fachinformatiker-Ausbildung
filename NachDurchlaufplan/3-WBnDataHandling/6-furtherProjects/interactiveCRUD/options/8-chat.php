@@ -3,44 +3,67 @@ session_start();
 require '../1-dbconnection.php';
 
 // Check if the user is logged in and a chat is selected
-if (!isset($_SESSION['user_id']) || !isset($_SESSION['chat_id'])) {
-    die("Invalid access. Please select a chat.");
+if (!isset($_SESSION['user_id']) || !isset($_SESSION['chat_id']) || !isset($_SESSION['db_user']) || !isset($_SESSION['db_pass'])) {
+    die("Invalid access. Please log in and select a chat.");
 }
 
+// Establish a database connection using the logged-in user's credentials
+$mysqli = connect($_SESSION['db_user'], $_SESSION['db_pass']);
 $user_id = $_SESSION['user_id'];
 $chat_id = $_SESSION['chat_id'];
 
 // Fetch the chat name using the chat_id
-$sqlChat = "SELECT chat_name FROM chats WHERE chat_id = $chat_id";
-$result = mysqli_query($mysqli, $sqlChat);
+$sqlChat = "SELECT chat_name FROM chats WHERE chat_id = ?";
+$stmtChat = $mysqli->prepare($sqlChat);
+$stmtChat->bind_param("i", $chat_id);
+$stmtChat->execute();
+$resultChat = $stmtChat->get_result();
 
-if ($result && mysqli_num_rows($result) > 0) {
-    $chat = mysqli_fetch_assoc($result);
+if ($resultChat && $resultChat->num_rows > 0) {
+    $chat = $resultChat->fetch_assoc();
     $chat_name = htmlspecialchars($chat['chat_name']); // Sanitize chat name
 } else {
     die("Chat not found.");
 }
+$stmtChat->close();
 
 // Fetch chat messages
 $sqlMessages = "SELECT m.content, m.sent_at, u.username 
                 FROM messages m
                 JOIN users u ON m.sender_id = u.user_id
-                WHERE m.chat_id = $chat_id
+                WHERE m.chat_id = ?
                 ORDER BY m.sent_at ASC";
-$messages = mysqli_query($mysqli, $sqlMessages);
+$stmtMessages = $mysqli->prepare($sqlMessages);
+$stmtMessages->bind_param("i", $chat_id);
+$stmtMessages->execute();
+$resultMessages = $stmtMessages->get_result();
+$messages = $resultMessages->fetch_all(MYSQLI_ASSOC);
+$stmtMessages->close();
+
+// Initialize warning message
+$warningMessage = null;
 
 // Handle message submission
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $content = htmlspecialchars($_POST['content']);
-    $sqlInsert = "INSERT INTO messages (chat_id, sender_id, content) VALUES ($chat_id, $user_id, '$content')";
-    mysqli_query($mysqli, $sqlInsert);
+    if (isset($_POST['content']) && trim($_POST['content']) !== '') { // Check if content is set and not empty
+        $content = htmlspecialchars(trim($_POST['content'])); // Sanitize and trim input
 
-    // Refresh the page to show the new message
-    header("Location: " . $_SERVER['PHP_SELF']);
-    exit;
+        // Insert the message into the database
+        $sqlInsert = "INSERT INTO messages (chat_id, sender_id, content) VALUES (?, ?, ?)";
+        $stmtInsert = $mysqli->prepare($sqlInsert);
+        $stmtInsert->bind_param("iis", $chat_id, $user_id, $content);
+        $stmtInsert->execute();
+        $stmtInsert->close();
+
+        // Refresh the page to show the new message
+        header("Location: " . $_SERVER['PHP_SELF']);
+        exit;
+    } else {
+        // Set a warning message for empty input
+        $warningMessage = "Message content cannot be empty.";
+    }
 }
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -52,15 +75,22 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <body>
     <div class="container mt-5">
         <h1 class="text-center"><?= $chat_name ?></h1>
+
+        <!-- Display Warning Message -->
+        <?php if (isset($warningMessage)): ?>
+            <div class="alert alert-warning"><?= htmlspecialchars($warningMessage) ?></div>
+        <?php endif; ?>
+
+        <!-- Chat Messages -->
         <div class="border p-3 mb-4" style="height: 300px; overflow-y: auto;">
-            <?php if (mysqli_num_rows($messages) > 0): ?>
-                <?php while ($msg = mysqli_fetch_assoc($messages)): ?>
+            <?php if (!empty($messages)): ?>
+                <?php foreach ($messages as $msg): ?>
                     <p>
                         <strong><?= htmlspecialchars($msg['username']) ?></strong>: 
                         <?= htmlspecialchars($msg['content']) ?>
-                        <small class="text-muted"><?= $msg['sent_at'] ?></small>
+                        <small class="text-muted"><?= htmlspecialchars($msg['sent_at']) ?></small>
                     </p>
-                <?php endwhile; ?>
+                <?php endforeach; ?>
             <?php else: ?>
                 <p class="text-muted">No messages yet. Be the first to say something!</p>
             <?php endif; ?>
@@ -73,6 +103,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             </div>
             <button type="submit" class="btn btn-success">Send</button>
         </form>
+
         <div class="mt-3">
             <a href="7-viewChats.php" class="btn btn-secondary">Back to Chats</a>
         </div>
