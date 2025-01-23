@@ -1,44 +1,44 @@
 <?php
-session_start();
-require '../1-dbconnection.php';
+    session_start();
+    require '../4-2-1-dbconnection.php';
 
-// Check if the user is logged in
-if (!isset($_SESSION['user_id']) || !isset($_SESSION['db_user']) || !isset($_SESSION['db_pass'])) {
-    die("You must be logged in to view and join chats.");
-}
-
-// Establish a database connection using the logged-in user's credentials
-$mysqli = connect($_SESSION['db_user'], $_SESSION['db_pass']);
-$user_id = $_SESSION['user_id'];
-
-// Fetch chats the user is NOT part of using prepared statements
-$sqlChats = "SELECT c.chat_id, c.chat_name 
-             FROM chats c
-             WHERE c.chat_id NOT IN (
-                 SELECT cp.chat_id 
-                 FROM chat_participants cp 
-                 WHERE cp.user_id = ?
-             )";
-$stmt = $mysqli->prepare($sqlChats);
-$stmt->bind_param("i", $user_id);
-$stmt->execute();
-$result = $stmt->get_result();
-$chats = $result->fetch_all(MYSQLI_ASSOC);
-
-// Handle form submission
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['joinChats']) && !empty($_POST['selected_chats'])) {
-    $stmtInsert = $mysqli->prepare("INSERT INTO chat_participants (chat_id, user_id, role) VALUES (?, ?, 'member')");
-    foreach ($_POST['selected_chats'] as $chat_id) {
-        $chat_id = intval($chat_id); // Sanitize input
-        $stmtInsert->bind_param("ii", $chat_id, $user_id);
-        $stmtInsert->execute();
+    // Check if the user is logged in
+    if (!isset($_SESSION['user_id']) || !isset($_SESSION['db_user']) || !isset($_SESSION['db_pass'])) {
+        die("You must be logged in to view and join chats.");
     }
-    $stmtInsert->close();
 
-    // Redirect back to refresh the list
-    header("Location: " . $_SERVER['PHP_SELF']);
-    exit;
-}
+    // Establish a database connection using the logged-in user's credentials
+    $mysqli = connect($_SESSION['db_user'], $_SESSION['db_pass']);
+    $user_id = $_SESSION['user_id'];
+
+    // Fetch chats the user is NOT part of using prepared statements
+    $sqlChats = "SELECT c.chat_id, c.chat_name 
+                FROM chats c
+                WHERE c.chat_id NOT IN (
+                    SELECT cp.chat_id 
+                    FROM chat_participants cp 
+                    WHERE cp.user_id = ?
+                )";
+    $stmt = $mysqli->prepare($sqlChats);
+    $stmt->bind_param("i", $user_id);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    $chats = $result->fetch_all(MYSQLI_ASSOC);
+
+    // Handle form submission
+    if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['joinChats']) && !empty($_POST['selected_chats'])) {
+        $stmtInsert = $mysqli->prepare("INSERT INTO chat_participants (chat_id, user_id, role) VALUES (?, ?, 'member')");
+        foreach ($_POST['selected_chats'] as $chat_id) {
+            $chat_id = intval($chat_id); // Sanitize input
+            $stmtInsert->bind_param("ii", $chat_id, $user_id);
+            $stmtInsert->execute();
+        }
+        $stmtInsert->close();
+
+        // Redirect back to refresh the list
+        header("Location: " . $_SERVER['PHP_SELF']);
+        exit;
+    }
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -89,7 +89,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['joinChats']) && !empt
 
     <!-- Back Button -->
     <div class="container mt-3">
-        <a href="../4-menu.php" class="btn btn-dark">Back to Menu</a>
+        <a href="../4-2-4-menu.php" class="btn btn-dark">Back to Menu</a>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>

@@ -1,6 +1,6 @@
 <?php
 session_start();
-require '../1-dbconnection.php'; 
+require '../4-2-1-dbconnection.php'; 
 $message = "";
 
 // Check if the user is logged in
@@ -59,7 +59,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <?php endif; ?>
 
         <div class="mt-3">
-            <a href="../4-menu.php" class="btn btn-dark">Back to Menu</a>
+            <a href="../4-2-4-menu.php" class="btn btn-dark">Back to Menu</a>
         </div>
     </div>
 </body>

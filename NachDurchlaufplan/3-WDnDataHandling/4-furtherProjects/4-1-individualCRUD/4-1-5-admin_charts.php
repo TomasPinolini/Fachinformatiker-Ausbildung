@@ -1,7 +1,7 @@
 <?php
     session_start();  
     // include("../1-dbconnection.php");
-    $mysqli = require __DIR__ . "../1-dbconnection.php";
+    $mysqli = require __DIR__ . "../4-1-1-dbconnection.php";
     if (!$mysqli) {die("Database connection failed: " . mysqli_connect_error());}
     $idAdmin = $_SESSION["id_users"];
 
@@ -28,7 +28,7 @@
 
     $jsContent = "const purchaseCounts = $jsArray;";
 
-    $jsFilePath = "/6-purchaseData.js";
+    $jsFilePath = "/4-1-6-purchaseData.js";
     if (file_put_contents($jsFilePath, $jsContent)) {
         echo "JavaScript file has been updated: $jsFilePath";
     } else {

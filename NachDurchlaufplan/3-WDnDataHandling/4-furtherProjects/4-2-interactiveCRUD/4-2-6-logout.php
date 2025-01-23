@@ -5,6 +5,6 @@ if (session_status() === PHP_SESSION_ACTIVE) {
     session_destroy();
 }
 
-header("Location: 3-login_register.php");
+header("Location: 4-2-3-login_register.php");
 exit;
 ?>
