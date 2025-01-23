@@ -1,9 +1,0 @@
-Add and Commit Changes
-    Objective: Track changes in the repository.
-    - Inside the my-first-repo folder, create a file named hello.txt and add some text to it.
-    - Add the file to the staging area:
-        . git add hello.txt
-    - Commit the changes:
-        . git commit -m "Add hello.txt with initial content"
-    - Task: Verify that the working directory is clean.
-        . git status

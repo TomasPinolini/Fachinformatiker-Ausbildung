@@ -1,8 +1,0 @@
-Create Your First Repository:
-    Objective: Understand how to initialize a Git repository.
-    - Create a folder called my-first-repo on your computer.
-    - Open the terminal and navigate to the folder
-        . cd path/to/my-first-repo
-    - Initialize a Git repository:
-        . git init
-    - Checking Task: Confirm that the .git folder was created.

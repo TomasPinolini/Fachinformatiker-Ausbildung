@@ -1,0 +1,55 @@
+1) Install Git and Configure It
+    Objective: Set up Git and configure user details.
+    Instructions:
+    - Install Git (download from git-scm.com).
+    - Open a terminal or command prompt.
+    - Run the following commands:
+        . git --version
+        . git config --global user.name "Your Name"
+        . git config --global user.email "youremail@example.com"
+
+    - Checking Task: Confirm Git is installed and configured:
+        . Run git config --list and check the output.
+
+2) Create Your First Repository:
+    Objective: Understand how to initialize a Git repository.
+    - Create a folder called my-first-repo on your computer.
+    - Open the terminal and navigate to the folder
+        . cd path/to/my-first-repo
+    - Initialize a Git repository:
+        . git init
+    - Checking Task: Confirm that the .git folder was created.
+  
+
+3) Add and Commit Changes
+    Objective: Track changes in the repository.
+    - Inside the my-first-repo folder, create a file named hello.txt and add some text to it.
+    - Add the file to the staging area:
+        . git add hello.txt
+    - Commit the changes:
+        . git commit -m "Add hello.txt with initial content"
+    - Task: Verify that the working directory is clean.
+        . git status
+
+
+4) Create a GitHub Repository:
+    Objective: Host the local repository on GitHub.
+    - Log in to GitHub and create a new repository called my-first-repo.
+    - Do not initialize it with a README file.
+    - Copy the URL of the repository (e.g., https://github.com/username/my-first-repo.git).
+    - Link your local repository to GitHub:
+    . git remote add origin https://github.com/username/my-first-repo.git
+    - Push the local changes to GitHub:
+        . git branch -M main
+        . git push -u origin main
+    - Visit your GitHub repository and confirm the file hello.txt is visible.
+
+
+5) Modify and Push Updates
+    Objective: Update a file and push the changes to GitHub.
+    - Open hello.txt and add a new line (e.g., Hello, GitHub!).
+    - Save the file, then:
+        . git add hello.txt
+        . git commit -m "Update hello.txt with new content"
+        . git push origin main
+    - Checking Task: Check the updated file on GitHub.

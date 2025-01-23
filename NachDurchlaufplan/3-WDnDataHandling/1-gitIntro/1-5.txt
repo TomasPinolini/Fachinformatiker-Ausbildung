@@ -1,8 +1,0 @@
-Modify and Push Updates
-    Objective: Update a file and push the changes to GitHub.
-    - Open hello.txt and add a new line (e.g., Hello, GitHub!).
-    - Save the file, then:
-        . git add hello.txt
-        . git commit -m "Update hello.txt with new content"
-        . git push origin main
-    - Checking Task: Check the updated file on GitHub.
