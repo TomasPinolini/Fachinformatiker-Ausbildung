@@ -12,7 +12,6 @@ for i in range(1, n + 1):
 print("The sum of numbers from 1 to", n, "is:", total)
 
 
-
 #7.3 While Loops.
 limit = int(input("Enter a number: "))
 
@@ -31,3 +30,19 @@ while num != 0:
     num = int(input("Enter another number (enter 0 to stop): "))
 
 print("Goodbye!")
+
+
+#7.5 Calculate Factorials Using a For Loop
+num = int(input("Enter a number to find its factorial: "))
+factorial = 1
+for i in range(1, num + 1):
+    factorial *= i
+print("The factorial of", num, "is:", factorial)
+
+
+#7.6 Print Multiplication Table Using a While Loop
+number = int(input("Enter a number to print its multiplication table: "))
+i = 1
+while i <= 10:
+    print(f"{number} x {i} = {number * i}")
+    i += 1

@@ -58,3 +58,24 @@ except AgeTooLowError as e:
     print("Error:", e)
 except ValueError:
     print("Error: Invalid input. Please enter a number.")
+
+
+#7.6 Log Exceptions to a File
+try:
+    value = int(input("Enter a number: "))
+    result = 100 / value
+    print("Result:", result)
+except Exception as e:
+    print("An error occurred:", e)
+    with open("error_log.txt", "a") as log_file:
+        log_file.write(str(e) + "\n")
+
+
+#7.7 Retry Input Until Correct
+while True:
+    try:
+        num = int(input("Enter an integer: "))
+        print("You entered:", num)
+        break
+    except ValueError:
+        print("Invalid input. Please try again.")

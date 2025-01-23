@@ -1,4 +1,4 @@
-#5 Basic Calculator with Options
+#6 Basic Calculator with Options
 
 print("Welcome to the Enhanced Calculator!")
 

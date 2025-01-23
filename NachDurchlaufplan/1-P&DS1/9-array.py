@@ -46,3 +46,16 @@ print("Maximum value:", max(numbers))
 numbers = [10, 20, 30, 40, 50]
 total_sum = sum(numbers)
 print("Sum of array elements:", total_sum)
+
+
+#9.7 Find the Average of Array Elements
+numbers = [10, 20, 30, 40, 50]
+average = sum(numbers) / len(numbers)
+print("The average of the array elements is:", average)
+
+
+#9.8 Find the Frequency of an Element in an Array
+numbers = [10, 20, 30, 20, 40, 50, 20]
+value = int(input("Enter a value to find its frequency: "))
+frequency = numbers.count(value)
+print("The frequency of", value, "is:", frequency)
