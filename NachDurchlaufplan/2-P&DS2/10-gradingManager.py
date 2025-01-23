@@ -104,33 +104,3 @@ while True:
         print("Invalid choice. Please try again.")
 
 
-# Features
-# File-Based Persistence:
-# Stores student records in a CSV file to maintain data across sessions.
-# View All Students:
-# Displays all student names and grades in a user-friendly format.
-# Add a New Student:
-# Allows adding a new student record with a name and grade.
-# Update a Student's Grade:
-# Finds a specific student by name and updates their grade.
-# Delete a Student Record:
-# Removes a student record by matching the name.
-# Interactive Menu:
-# Provides a dynamic menu for users to navigate system features easily.
-# Error Handling:
-# Manages cases where the file is missing or a record is not found.
-
-# Concepts Applied
-# File Handling:
-# Reads from and writes to a CSV file using Python's csv module.
-# Ensures the file is created if it doesn't already exist.
-# Functions:
-# Modular design with separate functions for viewing, adding, updating, and deleting records.
-# Loops:
-# Implements a main menu loop to keep the system running until the user exits.
-# Conditionals:
-# Validates user input and directs the flow to the corresponding system feature.
-# Data Structures:
-# Processes and manipulates student data stored in a list format from the CSV file.
-# User Interaction:
-# Collects user input for all operations, providing feedback for each action.

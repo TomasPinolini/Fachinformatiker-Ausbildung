@@ -85,21 +85,3 @@ while True:
     else:
         print("Invalid choice. Please try again.")
 
-# Features
-# Add Expenses: Allows users to add a new expense with a description and amount.
-# Remove Expenses: Removes an expense by matching the description provided by the user.
-# View Total Expenses: Calculates and displays the total amount of all expenses.
-# Highest/Lowest Expense: Identifies and displays the most and least expensive items.
-# List All Expenses: Displays all recorded expenses in a clear format.
-# Categorize Expenses: Groups expenses by categories and shows a summary.
-# Export Expenses to a File: Saves all recorded expenses to a text file for record-keeping.
-# Exit Option: Cleanly ends the program when selected.
-
-# Concepts Applied
-# Arrays/Lists: Manage a dynamic list of expenses stored as tuples (description and amount).
-# Loops: Iterates through the list for various operations (e.g., adding, removing, listing).
-# Conditionals: Validate user choices, check for empty lists, and handle errors.
-# Math Operations: Calculate totals, find maximum and minimum amounts.
-# String Handling: Compare and match descriptions during searches or deletions.
-# File Handling: Export expense data to a text file for external use.
-# User Interaction: Collect user input for dynamic functionality.

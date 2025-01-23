@@ -91,21 +91,3 @@ while True:
         print("Invalid choice. Please try again.")
 
 
-# Features
-# Add Students: Allows users to add a student’s name and grade to the list.
-# Calculate Average Grade: Computes the average grade of all students in the list.
-# Find Highest and Lowest Grades: Identifies the best and worst-performing students.
-# Search for a Student: Searches the list for a specific student by name.
-# List All Students: Displays all students and their respective grades.
-# Edit a Student’s Grade: Updates a specific student’s grade based on their name.
-# Sort Students by Grade: Sorts the student list in descending order of grades.
-# Exit Option: Cleanly ends the program when selected.
-
-# Concepts Applied
-# Variables: To store student names and grades in a list of tuples.
-# Loops: Enables repeated operations for adding, searching, listing, etc.
-# Conditionals: Validate user input and provide feedback for invalid or missing data.
-# Arrays/Lists: Manage a dynamic list of students and their grades.
-# Math Operations: Calculate averages, find minimum and maximum grades.
-# String Handling: Compare and search student names.
-# Sorting: Sort the student list by grades using sorted().
