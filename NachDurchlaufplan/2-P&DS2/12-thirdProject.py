@@ -38,3 +38,29 @@ while True:
 
     except ValueError:
         print("Error: Please enter a valid number.")
+
+# Features
+# Basic Arithmetic Operations:
+# Supports addition, subtraction, multiplication, and division.
+# Division by Zero Handling:
+# Provides error handling for cases where the divisor is zero.
+# Input Validation:
+# Detects invalid numeric inputs and prompts the user to enter valid numbers.
+# Dynamic Menu:
+# Interactive menu to allow users to select operations or exit the calculator.
+# Graceful Exit:
+# Cleanly exits the program when the user selects the "Exit" option.
+# Error Messaging:
+# Informs users of invalid menu choices or incorrect inputs, ensuring a smooth experience.
+
+# Concepts Applied
+# Conditionals:
+# Used extensively for menu navigation, operation selection, and error handling.
+# Loops:
+# Implements a continuous loop for repeated calculations until the user chooses to exit.
+# Functions:
+# Operations (addition, subtraction, etc.) are implemented in separate conditional blocks, emphasizing modularity.
+# Error Handling:
+# Catches ValueError exceptions to manage invalid numeric inputs.
+# User Interaction:
+# Prompts users for input at every step, ensuring dynamic and personalized interactions.

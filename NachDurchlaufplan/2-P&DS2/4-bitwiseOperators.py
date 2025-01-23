@@ -20,7 +20,7 @@ b = int(input("Enter the second number: "))
 a = a ^ b
 b = a ^ b
 a = a ^ b
-sdasa
+
 print("After swapping, a =", a, "and b =", b)
 
 

@@ -53,11 +53,31 @@ while True:
         print("Invalid choice. Please try again.")
 
 
-# Dictionary for Operations:
+# Features
+# Basic Arithmetic Operations:
+# Includes addition, subtraction, multiplication, and division.
+# Handles division by zero gracefully.
+# Bitwise Operations:
+# Supports bitwise AND and OR for integer inputs.
+# Calculation History:
+# Tracks past calculations and allows users to view them during the session.
+# Dynamic Menu:
+# Provides an interactive menu with options for operations, viewing history, and exiting the program.
+# Input Validation:
+# Detects invalid choices and prompts the user to try again.
+# Extensible Structure:
+# Uses a dictionary to map operation numbers to functions, making it easy to add new operations in the future.
 
-# Maps the operation numbers to their names and respective lambda functions.
-# Reduces the repetitive if-elif statements and makes it easy to add new operations.
-# List for History:
-
-# Stores past calculations as strings for easy review.
-# Users can view a history of their operations by choosing option 7.
+# Concepts Applied
+# Functions:
+# Uses lambda functions to perform calculations dynamically based on user choice.
+# Loops:
+# Implements a continuous loop to allow multiple operations until the user chooses to exit.
+# Conditionals:
+# Validates user input and handles different menu options.
+# Data Structures:
+# Stores calculation history in a list and operations in a dictionary for efficient access.
+# Error Handling:
+# Checks for division by zero and displays an appropriate error message.
+# User Interaction:
+# Collects user input for operation choice and operands, providing feedback for all actions.
