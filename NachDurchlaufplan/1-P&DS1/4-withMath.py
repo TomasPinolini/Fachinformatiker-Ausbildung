@@ -25,8 +25,6 @@ average = (num1 + num2 + num3) / 3
 print("The average of", num1, ",", num2, "and", num3, "is:", average)
 
 
-
-
 #4.4 Total amount and the percentage.
 total = float(input("Enter the total amount: "))
 percentage = float(input("Enter the percentage to calculate: "))
@@ -34,8 +32,8 @@ result = (total * percentage) / 100
 print(percentage, "% of", total, "is:", result)
 
 
-
 #4.5 Convert minutes to seconds
 minutes = float(input("Enter the time in minutes: "))
 seconds = minutes * 60
 print(minutes, "minutes is equal to", seconds, "seconds.")
+

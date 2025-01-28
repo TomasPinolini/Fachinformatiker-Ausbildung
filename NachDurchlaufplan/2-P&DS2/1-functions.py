@@ -1,4 +1,4 @@
-#2.1 Simple Function to Greet a User.
+#1.1 Simple Function to Greet a User.
 def greet_user():
     name = input("Enter your name: ")
     print("Hello,", name + "!")
@@ -6,7 +6,7 @@ def greet_user():
 greet_user()
 
 
-#2.2 Function to Add Two Numbers.
+#1.2 Function to Add Two Numbers.
 def add_numbers(a, b):
     return a + b
 
@@ -16,7 +16,7 @@ result = add_numbers(num1, num2)
 print("The sum is:", result)
 
 
-#2.3 Function to Find the Maximum of Two Numbers.
+#1.3 Function to Find the Maximum of Two Numbers.
 def find_max(a, b):
     if a > b:
         return a
@@ -28,7 +28,7 @@ num2 = int(input("Enter the second number: "))
 print("The larger number is:", find_max(num1, num2))
 
 
-#2.4 Function to Calculate the Factorial of a Number.
+#1.4 Function to Calculate the Factorial of a Number.
 def factorial(n):
     result = 1
     for i in range(1, n + 1):
@@ -39,7 +39,7 @@ num = int(input("Enter a number: "))
 print("The factorial of", num, "is:", factorial(num))
 
 
-#2.5 Function to Check if a Number is Prime.
+#1.5 Function to Check if a Number is Prime.
 def is_prime(n):
     if n <= 1:
         return False
@@ -55,7 +55,7 @@ else:
     print(num, "is not a prime number.")
 
 
-#2.6 Function to Reverse a String.
+#1.6 Function to Reverse a String.
 def reverse_string(s):
     return s[::-1]
 

@@ -31,3 +31,5 @@ end = int(input("Enter the ending number: "))
 for num in range(start, end + 1):
     toggled = ~num
     print("Original:", num, "Toggled:", toggled)
+
+
