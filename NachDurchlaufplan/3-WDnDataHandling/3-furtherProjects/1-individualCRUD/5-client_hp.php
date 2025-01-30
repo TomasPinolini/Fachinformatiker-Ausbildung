@@ -82,6 +82,12 @@
         foreach ($_POST["purchases"] as $idP) {
             $sqlNewPur = "INSERT into purchases (id_users, id_product) VALUES ('$idClient', '$idP')";
             mysqli_query($mysqli, $sqlNewPur);
+            if (mysqli_query($mysqli, $sqlNewPur)) {
+                echo "<div class='alert alert-success mt-3'>Products purchased successfully.</div>";
+            } else {
+                echo "<div class='alert alert-danger mt-3'>Error: " . mysqli_error($mysqli) . "</div>";
+            }
         }
     }
+
 ?>

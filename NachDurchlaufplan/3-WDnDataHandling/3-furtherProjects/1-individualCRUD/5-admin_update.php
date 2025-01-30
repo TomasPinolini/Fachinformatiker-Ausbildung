@@ -63,8 +63,7 @@
 
     <!-- Buttons -->
     <div class="container mt-5">
-        <a href="5-admin_create.php" class="btn btn-primary">Create a product</a>
-        <a href="5-admin_charts.php" class="btn btn-primary">Go to charts</a>
+        <a href="5-admin_create.php" class="btn btn-secondary">Create a product</a>
     </div>
 
     <!-- Main container -->

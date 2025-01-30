@@ -44,8 +44,7 @@
 
     <!-- Buttons -->
     <div class="container mt-5">    
-        <a href="5-admin_charts.php" class="btn btn-primary">Go to charts</a>
-        <a href="5-admin_update.php" class="btn btn-primary">Update products state</a>
+        <a href="5-admin_update.php" class="btn btn-secondary">Update products state</a>
     </div>
 
     <!-- Main container -->
