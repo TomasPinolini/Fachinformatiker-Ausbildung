@@ -59,7 +59,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <?php endif; ?>
 
         <div class="mt-3">
-            <a href="../4-2-4-menu.php" class="btn btn-dark">Back to Menu</a>
+            <a href="../4-menu.php" class="btn btn-dark">Back to Menu</a>
         </div>
     </div>
 </body>

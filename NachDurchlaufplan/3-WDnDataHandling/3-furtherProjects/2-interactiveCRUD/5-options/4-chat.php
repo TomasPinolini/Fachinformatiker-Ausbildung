@@ -1,75 +1,73 @@
 <?php
-session_start();
-require '../1-dbconnection.php';
+    session_start();
+    require '../1-dbconnection.php';
 
-// Check if the user is logged in and a chat is selected
-echo $_SESSION['chat_id'];
-echo $_SESSION['user_id'];
+    // Check if the user is logged in and a chat is selected
 
-if (!isset($_SESSION['user_id']) || !isset($_SESSION['chat_id'])) {
-    // foreach($_SESSION as $s){
-    //     echo $s, "<br>";
-    // }
-    // echo ".";
-    die("Invalid access. Please log in and select a chat.");
-}
-
-// Establish a database connection using the logged-in user's credentials
-$mysqli = connect($_SESSION['db_user'], $_SESSION['db_pass']);
-$user_id = $_SESSION['user_id'];
-$chat_id = $_SESSION['chat_id'];
-
-// Fetch the chat name using the chat_id
-$sqlChat = "SELECT chat_name FROM chats WHERE chat_id = ?";
-$stmtChat = $mysqli->prepare($sqlChat);
-$stmtChat->bind_param("i", $chat_id);
-$stmtChat->execute();
-$resultChat = $stmtChat->get_result();
-
-if ($resultChat && $resultChat->num_rows > 0) {
-    $chat = $resultChat->fetch_assoc();
-    $chat_name = htmlspecialchars($chat['chat_name']); // Sanitize chat name
-} else {
-    die("Chat not found.");
-}
-$stmtChat->close();
-
-// Fetch chat messages
-$sqlMessages = "SELECT m.content, m.sent_at, u.username 
-                FROM messages m
-                JOIN users u ON m.sender_id = u.user_id
-                WHERE m.chat_id = ?
-                ORDER BY m.sent_at ASC";
-$stmtMessages = $mysqli->prepare($sqlMessages);
-$stmtMessages->bind_param("i", $chat_id);
-$stmtMessages->execute();
-$resultMessages = $stmtMessages->get_result();
-$messages = $resultMessages->fetch_all(MYSQLI_ASSOC);
-$stmtMessages->close();
-
-// Initialize warning message
-$warningMessage = null;
-
-// Handle message submission
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    if (isset($_POST['content']) && trim($_POST['content']) !== '') { // Check if content is set and not empty
-        $content = htmlspecialchars(trim($_POST['content'])); // Sanitize and trim input
-
-        // Insert the message into the database
-        $sqlInsert = "INSERT INTO messages (chat_id, sender_id, content) VALUES (?, ?, ?)";
-        $stmtInsert = $mysqli->prepare($sqlInsert);
-        $stmtInsert->bind_param("iis", $chat_id, $user_id, $content);
-        $stmtInsert->execute();
-        $stmtInsert->close();
-
-        // Refresh the page to show the new message
-        header("Location: " . $_SERVER['PHP_SELF']);
-        exit;
-    } else {
-        // Set a warning message for empty input
-        $warningMessage = "Message content cannot be empty.";
+    if (!isset($_SESSION['user_id']) || !isset($_SESSION['chat_id'])) {
+        // foreach($_SESSION as $s){
+        //     echo $s, "<br>";
+        // }
+        // echo ".";
+        die("Invalid access. Please log in and select a chat.");
     }
-}
+
+    // Establish a database connection using the logged-in user's credentials
+    $mysqli = connect($_SESSION['db_user'], $_SESSION['db_pass']);
+    $user_id = $_SESSION['user_id'];
+    $chat_id = $_SESSION['chat_id'];
+
+    // Fetch the chat name using the chat_id
+    $sqlChat = "SELECT chat_name FROM chats WHERE chat_id = ?";
+    $stmtChat = $mysqli->prepare($sqlChat);
+    $stmtChat->bind_param("i", $chat_id);
+    $stmtChat->execute();
+    $resultChat = $stmtChat->get_result();
+
+    if ($resultChat && $resultChat->num_rows > 0) {
+        $chat = $resultChat->fetch_assoc();
+        $chat_name = htmlspecialchars($chat['chat_name']); // Sanitize chat name
+    } else {
+        die("Chat not found.");
+    }
+    $stmtChat->close();
+
+    // Fetch chat messages
+    $sqlMessages = "SELECT m.content, m.sent_at, u.username 
+                    FROM messages m
+                    JOIN users u ON m.sender_id = u.user_id
+                    WHERE m.chat_id = ?
+                    ORDER BY m.sent_at ASC";
+    $stmtMessages = $mysqli->prepare($sqlMessages);
+    $stmtMessages->bind_param("i", $chat_id);
+    $stmtMessages->execute();
+    $resultMessages = $stmtMessages->get_result();
+    $messages = $resultMessages->fetch_all(MYSQLI_ASSOC);
+    $stmtMessages->close();
+
+    // Initialize warning message
+    $warningMessage = null;
+
+    // Handle message submission
+    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+        if (isset($_POST['content']) && trim($_POST['content']) !== '') { // Check if content is set and not empty
+            $content = htmlspecialchars(trim($_POST['content'])); // Sanitize and trim input
+
+            // Insert the message into the database
+            $sqlInsert = "INSERT INTO messages (chat_id, sender_id, content) VALUES (?, ?, ?)";
+            $stmtInsert = $mysqli->prepare($sqlInsert);
+            $stmtInsert->bind_param("iis", $chat_id, $user_id, $content);
+            $stmtInsert->execute();
+            $stmtInsert->close();
+
+            // Refresh the page to show the new message
+            header("Location: " . $_SERVER['PHP_SELF']);
+            exit;
+        } else {
+            // Set a warning message for empty input
+            $warningMessage = "Message content cannot be empty.";
+        }
+    }
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -112,7 +110,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         </form>
 
         <div class="mt-3">
-            <a href="5-3-viewChats.php" class="btn btn-secondary">Back to Chats</a>
+            <a href="3-viewChats.php" class="btn btn-secondary">Back to Chats</a>
         </div>
     </div>
 </body>

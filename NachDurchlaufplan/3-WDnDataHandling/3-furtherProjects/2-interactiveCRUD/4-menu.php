@@ -2,6 +2,8 @@
     session_start();
     require '1-dbconnection.php';
 
+    $_SESSION['chat_id'] = "";
+
     // Check if the user is logged in
     if (!isset($_SESSION['user_id']) || !isset($_SESSION['db_user']) || !isset($_SESSION['db_pass'])) {
         die("You must be logged in to access the menu.");
@@ -45,7 +47,7 @@
                 <?php foreach ($chats as $chat): ?>
                     <li class="list-group-item d-flex justify-content-between align-items-center">
                         <?= htmlspecialchars($chat['chat_name']) ?>
-                        <a href="5-options/5-4-chat.php?chat_id=<?= htmlspecialchars($chat['chat_id']) ?>" class="btn btn-sm btn-primary">Enter</a>
+                        <a href="5-options/5-setChat.php?chat_id=<?= htmlspecialchars($chat['chat_id']) ?>" class="btn btn-sm btn-primary">Enter</a>
                     </li>
                 <?php endforeach; ?>
             </ul>

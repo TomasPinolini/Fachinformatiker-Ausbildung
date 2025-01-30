@@ -34,9 +34,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $stmt = $adminConn->prepare("INSERT INTO users (username, password) VALUES (?, ?)");
             $stmt->bind_param("ss", $username, $password);
             if ($stmt->execute()) {
-                echo "Registration successful. Please log in.";
+                echo "<div class='alert alert-success mt-3'>Sucessfull registration.</div>";
             } else {
-                echo "Error during registration: " . $stmt->error;
+                echo "<div class='alert alert-danger mt-3'>Error: " . mysqli_error($mysqli) . "</div>";
             }
         }
     } elseif ($action === 'login') {
