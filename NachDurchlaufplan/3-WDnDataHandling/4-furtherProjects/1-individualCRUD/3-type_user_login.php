@@ -5,7 +5,7 @@
     $validated = true;
     $error_message = '';
     $registration_error = '';
-    $mysqli = require __DIR__ . "/4-1-1-dbconnection.php";
+    $mysqli = require __DIR__ . "/1-dbconnection.php";
     if (!$mysqli) {die("Database connection failed: " . mysqli_connect_error());}
 
     function isValidPassword($password) {

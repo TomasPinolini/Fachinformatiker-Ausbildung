@@ -1,6 +1,6 @@
 <?php
     session_start();
-    require '../4-2-1-dbconnection.php';
+    require '../1-dbconnection.php';
 
     // Check if the user is logged in
     if (!isset($_SESSION['user_id']) || !isset($_SESSION['db_user']) || !isset($_SESSION['db_pass'])) {
@@ -89,7 +89,7 @@
 
     <!-- Back Button -->
     <div class="container mt-3">
-        <a href="../4-2-4-menu.php" class="btn btn-dark">Back to Menu</a>
+        <a href="../4-menu.php" class="btn btn-dark">Back to Menu</a>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>

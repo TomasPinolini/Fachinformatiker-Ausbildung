@@ -1,6 +1,6 @@
 <?php
 session_start();
-require '../4-2-1-dbconnection.php';
+require '../1-dbconnection.php';
 
 // Check if the user is logged in and a chat is selected
 echo $_SESSION['chat_id'];
@@ -112,7 +112,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         </form>
 
         <div class="mt-3">
-            <a href="4-2-5-3-viewChats.php" class="btn btn-secondary">Back to Chats</a>
+            <a href="5-3-viewChats.php" class="btn btn-secondary">Back to Chats</a>
         </div>
     </div>
 </body>

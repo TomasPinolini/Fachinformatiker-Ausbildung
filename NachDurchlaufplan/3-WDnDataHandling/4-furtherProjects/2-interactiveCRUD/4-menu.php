@@ -1,6 +1,6 @@
 <?php
     session_start();
-    require '4-2-1-dbconnection.php';
+    require '1-dbconnection.php';
 
     // Check if the user is logged in
     if (!isset($_SESSION['user_id']) || !isset($_SESSION['db_user']) || !isset($_SESSION['db_pass'])) {
@@ -45,7 +45,7 @@
                 <?php foreach ($chats as $chat): ?>
                     <li class="list-group-item d-flex justify-content-between align-items-center">
                         <?= htmlspecialchars($chat['chat_name']) ?>
-                        <a href="4-2-5-options/4-2-5-4-chat.php?chat_id=<?= htmlspecialchars($chat['chat_id']) ?>" class="btn btn-sm btn-primary">Enter</a>
+                        <a href="5-options/5-4-chat.php?chat_id=<?= htmlspecialchars($chat['chat_id']) ?>" class="btn btn-sm btn-primary">Enter</a>
                     </li>
                 <?php endforeach; ?>
             </ul>
@@ -55,14 +55,14 @@
 
         <!-- Existing Options -->
         <div class="mt-4">
-            <a href="4-2-5-options/4-2-5-1-createChat.php" class="btn btn-primary d-block mb-2">Create Chat</a>
-            <a href="4-2-5-options/4-2-5-2-joinChats.php" class="btn btn-primary d-block mb-2">Join Chats</a>
-            <a href="4-2-5-options/4-2-5-3-viewChats.php" class="btn btn-primary d-block mb-2">View All Chats</a>
+            <a href="5-options/1-createChat.php" class="btn btn-primary d-block mb-2">Create Chat</a>
+            <a href="5-options/2-joinChats.php" class="btn btn-primary d-block mb-2">Join Chats</a>
+            <a href="5-options/3-viewChats.php" class="btn btn-primary d-block mb-2">View All Chats</a>
         </div>
 
         <!-- Logout Button -->
         <div class="mt-4">
-            <a href="4-2-6-logout.php" class="btn btn-danger d-block">Logout</a>
+            <a href="6-logout.php" class="btn btn-danger d-block">Logout</a>
         </div>
     </div>
 </body>

@@ -1,6 +1,6 @@
 <?php
     session_start();
-    require '../4-2-1-dbconnection.php';
+    require '../1-dbconnection.php';
 
     // Check if the user is logged in
     if (!isset($_SESSION['user_id']) || !isset($_SESSION['db_user']) || !isset($_SESSION['db_pass'])) {
@@ -58,7 +58,7 @@
                 <?php foreach ($joinedChats as $chat): ?>
                     <li class="list-group-item d-flex justify-content-between align-items-center">
                         <?= htmlspecialchars($chat['chat_name']) ?>
-                        <form method="POST" action="4-2-5-4-chat.php" class="d-inline">
+                        <form method="POST" action="5-4-chat.php" class="d-inline">
                             <input type="hidden" name="chat_id" value="<?= htmlspecialchars($chat['chat_id']) ?>">
                             <button type="submit" class="btn btn-sm btn-primary">Enter</button>
                         </form>
@@ -76,7 +76,7 @@
                 <?php foreach ($otherChats as $chat): ?>
                     <li class="list-group-item d-flex justify-content-between align-items-center">
                         <?= htmlspecialchars($chat['chat_name']) ?>
-                        <a href="4-2-5-2-joinChats.php" class="btn btn-sm btn-success">Join</a>
+                        <a href="5-2-joinChats.php" class="btn btn-sm btn-success">Join</a>
                     </li>
                 <?php endforeach; ?>
             </ul>
@@ -85,7 +85,7 @@
         <?php endif; ?>
 
         <div class="mt-3">
-            <a href="../4-2-4-menu.php" class="btn btn-dark">Back to Menu</a>
+            <a href="../4-menu.php" class="btn btn-dark">Back to Menu</a>
         </div>
     </div>
 </body>

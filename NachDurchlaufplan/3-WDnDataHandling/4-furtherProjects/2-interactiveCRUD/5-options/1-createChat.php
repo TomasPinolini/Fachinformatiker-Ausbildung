@@ -1,6 +1,6 @@
 <?php
 session_start();
-require '../4-2-1-dbconnection.php'; 
+require '../1-dbconnection.php'; 
 $message = "";
 
 // Check if the user is logged in
