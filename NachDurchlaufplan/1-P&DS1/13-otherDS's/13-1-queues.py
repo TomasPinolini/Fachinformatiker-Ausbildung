@@ -31,3 +31,14 @@ if len(queue) == max_size:
 
 queue.append("D")
 print("Queue after adding a new element:", list(queue))
+
+
+#1.1.3 Peek the Front of the Queue
+queue = deque(["X", "Y", "Z"])
+print("Front element of the queue:", queue[0])
+
+
+#1.1.4 Reverse a Queue
+queue = deque(["A", "B", "C"])
+queue.reverse()
+print("Reversed queue:", list(queue))

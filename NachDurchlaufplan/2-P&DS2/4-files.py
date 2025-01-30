@@ -74,3 +74,34 @@ with open("names.csv", "r") as source_file:
             writer.writerow(row)
 
 print("Data has been copied to names_copy.csv.")
+
+#3.7 Delete a Specific Row in a CSV File.
+import csv
+
+row_to_delete = input("Enter the name to delete: ")
+
+with open("names.csv", "r") as source_file:
+    rows = list(csv.reader(source_file))
+
+with open("names.csv", "w", newline="") as destination_file:
+    writer = csv.writer(destination_file)
+    for row in rows:
+        if row and row[0] != row_to_delete:
+            writer.writerow(row)
+
+print(f"{row_to_delete} has been deleted from names.csv.")
+
+
+#3.8 Count Occurrences of a Word in a CSV File.
+import csv
+
+word_to_count = input("Enter the name to count: ")
+count = 0
+
+with open("names.csv", "r") as file:
+    reader = csv.reader(file)
+    for row in reader:
+        if row and word_to_count in row:
+            count += 1
+
+print(f"{word_to_count} appears {count} times in names.csv.")

@@ -5,7 +5,6 @@ sum_result = num1 + num2
 print("The sum is:", sum_result)
 
 
-
 #4.2 Rectangle's width and height.
 width = float(input("Enter the width of the rectangle: "))
 height = float(input("Enter the height of the rectangle: "))
@@ -13,7 +12,6 @@ area = width * height
 perimeter = 2 * (width + height)
 print("Area:", area)
 print("Perimeter:", perimeter)
-
 
 
 #4.3 Average of three numbers.

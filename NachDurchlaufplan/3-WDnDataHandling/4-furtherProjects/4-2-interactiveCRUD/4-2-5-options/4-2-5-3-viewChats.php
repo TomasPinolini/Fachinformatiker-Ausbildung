@@ -1,42 +1,42 @@
 <?php
-session_start();
-require '../1-dbconnection.php';
+    session_start();
+    require '../4-2-1-dbconnection.php';
 
-// Check if the user is logged in
-if (!isset($_SESSION['user_id']) || !isset($_SESSION['db_user']) || !isset($_SESSION['db_pass'])) {
-    die("Invalid access. Please log in.");
-}
+    // Check if the user is logged in
+    if (!isset($_SESSION['user_id']) || !isset($_SESSION['db_user']) || !isset($_SESSION['db_pass'])) {
+        die("Invalid access. Please log in.");
+    }
 
-// Establish a database connection using the logged-in user's credentials
-$mysqli = connect($_SESSION['db_user'], $_SESSION['db_pass']);
-$user_id = $_SESSION['user_id'];
+    // Establish a database connection using the logged-in user's credentials
+    $mysqli = connect($_SESSION['db_user'], $_SESSION['db_pass']);
+    $user_id = $_SESSION['user_id'];
 
-// Fetch chats the user is part of
-$sqlJoinedChats = "SELECT c.chat_id, c.chat_name 
-                   FROM chats c
-                   JOIN chat_participants cp ON c.chat_id = cp.chat_id
-                   WHERE cp.user_id = ?";
-$stmtJoined = $mysqli->prepare($sqlJoinedChats);
-$stmtJoined->bind_param("i", $user_id);
-$stmtJoined->execute();
-$resultJoined = $stmtJoined->get_result();
-$joinedChats = $resultJoined->fetch_all(MYSQLI_ASSOC);
-$stmtJoined->close();
+    // Fetch chats the user is part of
+    $sqlJoinedChats = "SELECT c.chat_id, c.chat_name 
+                    FROM chats c
+                    JOIN chat_participants cp ON c.chat_id = cp.chat_id
+                    WHERE cp.user_id = ?";
+    $stmtJoined = $mysqli->prepare($sqlJoinedChats);
+    $stmtJoined->bind_param("i", $user_id);
+    $stmtJoined->execute();
+    $resultJoined = $stmtJoined->get_result();
+    $joinedChats = $resultJoined->fetch_all(MYSQLI_ASSOC);
+    $stmtJoined->close();
 
-// Fetch chats the user is NOT part of
-$sqlOtherChats = "SELECT c.chat_id, c.chat_name 
-                  FROM chats c
-                  WHERE c.chat_id NOT IN (
-                      SELECT cp.chat_id 
-                      FROM chat_participants cp 
-                      WHERE cp.user_id = ?
-                  )";
-$stmtOther = $mysqli->prepare($sqlOtherChats);
-$stmtOther->bind_param("i", $user_id);
-$stmtOther->execute();
-$resultOther = $stmtOther->get_result();
-$otherChats = $resultOther->fetch_all(MYSQLI_ASSOC);
-$stmtOther->close();
+    // Fetch chats the user is NOT part of
+    $sqlOtherChats = "SELECT c.chat_id, c.chat_name 
+                    FROM chats c
+                    WHERE c.chat_id NOT IN (
+                        SELECT cp.chat_id 
+                        FROM chat_participants cp 
+                        WHERE cp.user_id = ?
+                    )";
+    $stmtOther = $mysqli->prepare($sqlOtherChats);
+    $stmtOther->bind_param("i", $user_id);
+    $stmtOther->execute();
+    $resultOther = $stmtOther->get_result();
+    $otherChats = $resultOther->fetch_all(MYSQLI_ASSOC);
+    $stmtOther->close();
 ?>
 
 <!DOCTYPE html>
@@ -58,7 +58,7 @@ $stmtOther->close();
                 <?php foreach ($joinedChats as $chat): ?>
                     <li class="list-group-item d-flex justify-content-between align-items-center">
                         <?= htmlspecialchars($chat['chat_name']) ?>
-                        <form method="POST" action="8-chat.php" class="d-inline">
+                        <form method="POST" action="4-2-5-4-chat.php" class="d-inline">
                             <input type="hidden" name="chat_id" value="<?= htmlspecialchars($chat['chat_id']) ?>">
                             <button type="submit" class="btn btn-sm btn-primary">Enter</button>
                         </form>
@@ -76,7 +76,7 @@ $stmtOther->close();
                 <?php foreach ($otherChats as $chat): ?>
                     <li class="list-group-item d-flex justify-content-between align-items-center">
                         <?= htmlspecialchars($chat['chat_name']) ?>
-                        <a href="6-joinChat.php" class="btn btn-sm btn-success">Join</a>
+                        <a href="4-2-5-2-joinChats.php" class="btn btn-sm btn-success">Join</a>
                     </li>
                 <?php endforeach; ?>
             </ul>
@@ -85,7 +85,7 @@ $stmtOther->close();
         <?php endif; ?>
 
         <div class="mt-3">
-            <a href="../4-menu.php" class="btn btn-dark">Back to Menu</a>
+            <a href="../4-2-4-menu.php" class="btn btn-dark">Back to Menu</a>
         </div>
     </div>
 </body>

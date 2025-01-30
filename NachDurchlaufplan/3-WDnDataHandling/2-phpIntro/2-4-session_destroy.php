@@ -15,6 +15,6 @@ session_destroy();
 <body>
     <h1>Session Destroyed</h1>
     <p>You have successfully logged out.</p>
-    <a href="2-session_start.php">Start a New Session</a>
+    <a href="2-2-session_start.php">Start a New Session</a>
 </body>
 </html>

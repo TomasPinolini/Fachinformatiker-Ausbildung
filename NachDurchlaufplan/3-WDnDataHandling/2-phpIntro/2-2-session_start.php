@@ -23,6 +23,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         Email: <input type="email" name="email" required><br>
         <button type="submit">Submit</button>
     </form>
-    <a href="2-session_get.php">Go to Next Page</a>
+    <a href="2-3-session_get.php">Go to Next Page</a>
 </body>
 </html>

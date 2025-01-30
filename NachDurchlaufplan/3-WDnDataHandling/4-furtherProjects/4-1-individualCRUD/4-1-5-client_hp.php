@@ -1,7 +1,7 @@
 <?php
     session_start();
     $idClient = $_SESSION["id_users"];
-    require(__DIR__ . '\1-dbconnection.php');
+    require(__DIR__ . '\4-1-1-dbconnection.php');
     if (!$mysqli) {die("Database connection failed: " . mysqli_connect_error());}
     $sqlPr = "SELECT * FROM products WHERE state = '1'";
     $prods = mysqli_query($mysqli, $sqlPr);

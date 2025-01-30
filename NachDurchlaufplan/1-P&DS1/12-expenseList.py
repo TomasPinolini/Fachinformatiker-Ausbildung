@@ -8,9 +8,11 @@ while True:
     print("3. View Total Expenses")
     print("4. Find Highest and Lowest Expense")
     print("5. List All Expenses")
-    print("6. Exit")
+    print("6. Categorize Expenses")
+    print("7. Export Expenses to a File")
+    print("8. Exit")
 
-    choice = int(input("Enter your choice (1-6): "))
+    choice = int(input("Enter your choice (1-8): "))
 
     if choice == 1:
         # Add a new expense
@@ -56,6 +58,26 @@ while True:
             print("No expenses to display.")
 
     elif choice == 6:
+        # Categorize expenses
+        categories = {}
+        for desc, amount in expenses:
+            category = input(f"Enter a category for the expense '{desc}': ")
+            if category in categories:
+                categories[category] += amount
+            else:
+                categories[category] = amount
+        print("\nExpenses by Category:")
+        for category, total in categories.items():
+            print(f"{category}: ${total:.2f}")
+
+    elif choice == 7:
+        # Export expenses to a file
+        with open("expenses.txt", "w") as file:
+            for desc, amount in expenses:
+                file.write(f"{desc}: ${amount:.2f}\n")
+        print("Expenses have been saved to 'expenses.txt'.")
+
+    elif choice == 8:
         # Exit the program
         print("Exiting the Expense Tracker. Goodbye!")
         break
@@ -63,17 +85,3 @@ while True:
     else:
         print("Invalid choice. Please try again.")
 
-
-# Features
-# Add Expenses: Add a new expense with a description and amount.
-# Remove Expenses: Remove an expense by its description.
-# View Totals: Show the total amount of all expenses.
-# Highest/Lowest Expense: Identify the most and least expensive items.
-# List Expenses: Display all expenses in a readable format.
-
-# Concepts Applied
-# Arrays: Store and manage a list of expenses.
-# Conditionals: Handle user choices and error conditions.
-# Loops: Iterate through the expense list.
-# Math Operations: Calculate totals, highest, and lowest amounts.
-# Strings: Manage expense descriptions and user input.

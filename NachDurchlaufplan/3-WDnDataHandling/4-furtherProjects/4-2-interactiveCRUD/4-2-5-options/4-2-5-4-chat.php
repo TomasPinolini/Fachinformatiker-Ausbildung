@@ -1,9 +1,16 @@
 <?php
 session_start();
-require '../1-dbconnection.php';
+require '../4-2-1-dbconnection.php';
 
 // Check if the user is logged in and a chat is selected
-if (!isset($_SESSION['user_id']) || !isset($_SESSION['chat_id']) || !isset($_SESSION['db_user']) || !isset($_SESSION['db_pass'])) {
+echo $_SESSION['chat_id'];
+echo $_SESSION['user_id'];
+
+if (!isset($_SESSION['user_id']) || !isset($_SESSION['chat_id'])) {
+    // foreach($_SESSION as $s){
+    //     echo $s, "<br>";
+    // }
+    // echo ".";
     die("Invalid access. Please log in and select a chat.");
 }
 
@@ -105,7 +112,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         </form>
 
         <div class="mt-3">
-            <a href="7-viewChats.php" class="btn btn-secondary">Back to Chats</a>
+            <a href="4-2-5-3-viewChats.php" class="btn btn-secondary">Back to Chats</a>
         </div>
     </div>
 </body>

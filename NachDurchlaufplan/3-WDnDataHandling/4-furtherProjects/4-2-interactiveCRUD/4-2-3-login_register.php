@@ -1,6 +1,6 @@
 <?php
 session_start();
-require '1-dbconnection.php';
+require '4-2-1-dbconnection.php';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $username = $_POST['username'];
@@ -56,7 +56,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             if ($user) {
                 $_SESSION['user_id'] = $user['user_id'];
                 $_SESSION['username'] = $user['username'];
-                header("Location: 4-menu.php");
+                header("Location: 4-2-4-menu.php");
                 exit();
             } else {
                 echo "Invalid credentials or user not found.";

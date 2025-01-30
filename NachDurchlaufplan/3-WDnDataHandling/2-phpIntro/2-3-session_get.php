@@ -19,6 +19,6 @@ session_start();
         echo "No session variables are set.<br>";
     }
     ?>
-    <a href="2-session_destroy.php">Logout</a>
+    <a href="2-4-session_destroy.php">Logout</a>
 </body>
 </html>

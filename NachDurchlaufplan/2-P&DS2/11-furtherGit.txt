@@ -28,3 +28,36 @@
         . git merge feature-branch
         . git push origin main
     - Checking Task: Check GitHub to confirm the merged changes.
+
+
+3) View and Undo Staged Changes
+    Objective: Learn how to view and unstage changes.
+    - Modify hello.txt by adding a new line (e.g., Adding temporary changes).
+    - Stage the file:
+        . git add hello.txt
+    - View staged changes:
+        . git diff --cached
+    - Unstage the file:
+        . git restore --staged hello.txt
+    - Task: Verify that the file is no longer staged:
+        . git status
+
+
+4) Resolve Merge Conflicts
+    Objective: Handle conflicts that arise during a merge.
+    - Create and switch to a new branch:
+        . git branch conflict-branch
+        . git switch conflict-branch
+    - Modify hello.txt by adding a conflicting line (e.g., This is from conflict-branch.).
+    - Add and commit the changes:
+        . git add hello.txt
+        . git commit -m "Add conflict line in conflict-branch"
+    - Switch back to the main branch and make a conflicting edit to the same line.
+    - Add and commit the changes:
+        . git add hello.txt
+        . git commit -m "Add conflict line in main branch"
+    - Attempt to merge conflict-branch into main:
+        . git merge conflict-branch
+    - Task: Use a text editor or Git tools to resolve the conflict.
+        . git add hello.txt
+        . git commit -m "Resolve merge conflict"

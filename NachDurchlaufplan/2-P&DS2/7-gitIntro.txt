@@ -53,3 +53,30 @@
         . git commit -m "Update hello.txt with new content"
         . git push origin main
     - Checking Task: Check the updated file on GitHub.
+
+
+6) Revert a Commit:
+    Objective: Undo changes from a previous commit without deleting history.
+    - Identify the commit hash:
+        . git log
+    - Revert the commit:
+        . git revert <commit_hash>
+    - Task: Verify that the changes have been reverted by checking the repository's status:
+        . git status
+
+
+7) Create and Merge a Branch:
+    Objective: Work on a new feature in a separate branch and merge it into the main branch.
+    - Create a new branch:
+        . git branch new-feature
+    - Switch to the new branch:
+        . git checkout new-feature
+    - Make changes in the branch, add and commit them:
+        . git add <file>
+        . git commit -m "Add new feature"
+    - Switch back to the main branch:
+        . git checkout main
+    - Merge the new branch into the main branch:
+        . git merge new-feature
+    - Task: Verify the changes in the main branch and delete the merged branch:
+        . git branch -d new-feature

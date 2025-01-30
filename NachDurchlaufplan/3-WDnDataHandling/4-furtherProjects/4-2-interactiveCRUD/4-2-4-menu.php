@@ -1,29 +1,29 @@
 <?php
-session_start();
-require '1-dbconnection.php';
+    session_start();
+    require '4-2-1-dbconnection.php';
 
-// Check if the user is logged in
-if (!isset($_SESSION['user_id']) || !isset($_SESSION['db_user']) || !isset($_SESSION['db_pass'])) {
-    die("You must be logged in to access the menu.");
-}
+    // Check if the user is logged in
+    if (!isset($_SESSION['user_id']) || !isset($_SESSION['db_user']) || !isset($_SESSION['db_pass'])) {
+        die("You must be logged in to access the menu.");
+    }
 
-// Establish a database connection using the logged-in user's credentials
-$mysqli = connect($_SESSION['db_user'], $_SESSION['db_pass']);
+    // Establish a database connection using the logged-in user's credentials
+    $mysqli = connect($_SESSION['db_user'], $_SESSION['db_pass']);
 
-// Fetch user ID and username
-$user_id = $_SESSION['user_id'];
-$username = $_SESSION['username'];
+    // Fetch user ID and username
+    $user_id = $_SESSION['user_id'];
+    $username = $_SESSION['username'];
 
-// Fetch chats the user belongs to
-$sqlChats = "SELECT c.chat_id, c.chat_name 
-             FROM chats c
-             JOIN chat_participants cp ON c.chat_id = cp.chat_id
-             WHERE cp.user_id = ?";
-$stmt = $mysqli->prepare($sqlChats);
-$stmt->bind_param("i", $user_id);
-$stmt->execute();
-$result = $stmt->get_result();
-$chats = $result->fetch_all(MYSQLI_ASSOC);
+    // Fetch chats the user belongs to
+    $sqlChats = "SELECT c.chat_id, c.chat_name 
+                FROM chats c
+                JOIN chat_participants cp ON c.chat_id = cp.chat_id
+                WHERE cp.user_id = ?";
+    $stmt = $mysqli->prepare($sqlChats);
+    $stmt->bind_param("i", $user_id);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    $chats = $result->fetch_all(MYSQLI_ASSOC);
 ?>
 
 <!DOCTYPE html>
@@ -45,7 +45,7 @@ $chats = $result->fetch_all(MYSQLI_ASSOC);
                 <?php foreach ($chats as $chat): ?>
                     <li class="list-group-item d-flex justify-content-between align-items-center">
                         <?= htmlspecialchars($chat['chat_name']) ?>
-                        <a href="options/8-chat.php?chat_id=<?= htmlspecialchars($chat['chat_id']) ?>" class="btn btn-sm btn-primary">Enter</a>
+                        <a href="4-2-5-options/4-2-5-4-chat.php?chat_id=<?= htmlspecialchars($chat['chat_id']) ?>" class="btn btn-sm btn-primary">Enter</a>
                     </li>
                 <?php endforeach; ?>
             </ul>
@@ -55,14 +55,14 @@ $chats = $result->fetch_all(MYSQLI_ASSOC);
 
         <!-- Existing Options -->
         <div class="mt-4">
-            <a href="options/5-createChat.php" class="btn btn-primary d-block mb-2">Create Chat</a>
-            <a href="options/6-joinChats.php" class="btn btn-primary d-block mb-2">Join Chats</a>
-            <a href="options/7-viewChats.php" class="btn btn-primary d-block mb-2">View All Chats</a>
+            <a href="4-2-5-options/4-2-5-1-createChat.php" class="btn btn-primary d-block mb-2">Create Chat</a>
+            <a href="4-2-5-options/4-2-5-2-joinChats.php" class="btn btn-primary d-block mb-2">Join Chats</a>
+            <a href="4-2-5-options/4-2-5-3-viewChats.php" class="btn btn-primary d-block mb-2">View All Chats</a>
         </div>
 
         <!-- Logout Button -->
         <div class="mt-4">
-            <a href="10-logout.php" class="btn btn-danger d-block">Logout</a>
+            <a href="4-2-6-logout.php" class="btn btn-danger d-block">Logout</a>
         </div>
     </div>
 </body>
