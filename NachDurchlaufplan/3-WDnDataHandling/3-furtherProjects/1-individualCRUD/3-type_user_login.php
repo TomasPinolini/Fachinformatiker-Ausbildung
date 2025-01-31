@@ -53,8 +53,6 @@
                             header("Location: 5-client_hp.php");
                         }elseif($user["type"] === "admin"){
                             header("Location: 5-admin_create.php");
-                        }elseif($user["type"] === "guest"){                           
-                            header("Location: 5-guest_hp.php");
                         }
                         exit;
                     } else {
