@@ -1,4 +1,17 @@
 #7 Student Grade Management System.
+
+# CSV File Management: Using Python’s csv module to store, retrieve, update, and delete student records persistently.
+# Data Input and Validation: Ensuring user input is correctly formatted, preventing empty or incorrect data entries.
+# CRUD Operations: Implementing the four core operations:
+# Create: Add new student records.
+# Read: View all student records.
+# Update: Modify a student's grade.
+# Delete: Remove a student record.
+# Error Handling: Managing file-related exceptions and handling cases where records are missing.
+# User Interface: A simple, menu-driven text-based interface that allows users to interact with the system.
+# Persistence: Ensuring student data remains saved between program runs by storing it in a CSV file.
+# Scalability & Maintainability: Writing modular and readable code that can be expanded to include more features like searching or grade statistics.
+
 import csv
 
 # File to store the student records

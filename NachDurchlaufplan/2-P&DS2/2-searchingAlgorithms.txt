@@ -1,0 +1,31 @@
+Real-Life Searching Exercises:
+
+1. Finding a Name in a Guest List (Linear Search)
+You are at a party, and there is a long guest list at the entrance. You need to check if your friend’s name is on the list. You can only check names one by one. How many names would you have to go through in the worst case?
+
+2. Looking for a Word in a Dictionary (Binary Search)
+Imagine you have a large dictionary and want to find the meaning of the word "apple." Instead of checking from the first page, you open the book in the middle, see if "apple" is before or after, and repeat the process. How does this compare to checking every word one by one?
+
+3. Searching for a Specific Product in a Supermarket Aisle (Linear Search)
+You are in a grocery store looking for a specific brand of cereal on a shelf filled with different brands. How would you go about finding it if the products are arranged randomly? What if they were sorted alphabetically?
+
+4. Finding a Contact in Your Phone (Binary Search)
+You need to find your friend's number in your phone’s contact list, which is sorted alphabetically. Instead of scrolling from A to Z, you jump to the middle, decide whether the name is before or after, and repeat. How many jumps do you think it would take?
+
+5. Looking for a Book in a Library (Jump Search)
+You are in a library where books are organized by categories and arranged in order. Instead of checking book by book, you first jump by shelves, and once you find the right section, you check book by book. How is this different from just scanning every book from the beginning?
+
+6. Finding Your Seat in a Concert Hall (Binary Search)
+You have a ticket with seat number 150 in a row of 300 seats. The seats are numbered in order. Instead of counting from seat 1, how can you efficiently find seat 150 using a search strategy?
+
+7. Searching for a File in a Folder (Binary Search or Linear Search)
+You have a folder on your computer containing thousands of files sorted alphabetically. How would you quickly find a specific file? What if they weren’t sorted?
+
+8. Finding a Broken Light in a Row of Streetlights (Jump Search)
+A city maintenance worker needs to find which streetlight is broken in a row of 100 streetlights. Instead of checking one by one, they decide to check every 10th light first, then search within that block. How does this make the search faster?
+
+9. Finding a Lost Item in Your Room (Linear Search)
+You misplaced your keys somewhere in your room. You don’t remember where you left them, so you start checking every possible spot. How would your approach change if you had a habit of always placing them in one of three usual places?
+
+10. Searching for a Page Number in a Book Index (Binary Search)
+You need to find a topic in the index of a textbook. Instead of checking every page number, you start in the middle, compare, and decide which half to search next. How many steps do you think it would take in a book with 500 pages?

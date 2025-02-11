@@ -1,63 +1,45 @@
-#4.1 Check if a Number is Even or Odd Using Bitwise AND.
-num = int(input("Enter a number: "))
-if num & 1 == 0:
-    print("The number is even.")
+# 1. Even or Odd Check
+# Bitwise AND (&) with 1 checks if the last bit is 1 (odd) or 0 (even)
+num = 6  # Try changing this number!
+if num & 1:
+    print(f"{num} is ODD!")
 else:
-    print("The number is odd.")
+    print(f"{num} is EVEN!")
 
+# 2. Make a Number Always Odd
+# Bitwise OR (|) with 1 ensures the last bit is always 1, making the number odd
+num = 8  # Try changing this!
+new_num = num | 1  
+print(f"Original: {num}, Now always odd: {new_num}")
 
-#4.2 Find the Result of Bitwise OR.
-num1 = int(input("Enter the first number: "))
-num2 = int(input("Enter the second number: "))
-result = num1 | num2
-print("The result of bitwise OR is:", result)
+# 3. Double a Number with Bit Shift
+# Left shift (<<) moves bits left, multiplying by 2
+num = 4  # Try different numbers!
+double = num << 1  
+print(f"Original: {num}, Doubled: {double}")
 
+# 4. Cut a Number in Half with Bit Shift
+# Right shift (>>) moves bits right, dividing by 2
+num = 10  # Try different numbers!
+half = num >> 1  
+print(f"Original: {num}, Halved: {half}")
 
-#4.3 Swap Two Numbers Using Bitwise XOR.
-a = int(input("Enter the first number: "))
-b = int(input("Enter the second number: "))
+# 5. Turn ON a Specific Bit
+# Bitwise OR (|) with (1 << position) sets a specific bit to 1
+num = 2  # Binary: 10
+pos = 1  # 2nd bit (0-based)
+new_num = num | (1 << pos)  
+print(f"Before: {bin(num)}, After setting bit {pos}: {bin(new_num)}")
 
-a = a ^ b
-b = a ^ b
-a = a ^ b
+# 6. Turn OFF a Specific Bit
+# Bitwise AND (&) with ~(1 << position) clears a specific bit to 0
+num = 7  # Binary: 111
+pos = 1  # Clearing 2nd bit
+new_num = num & ~(1 << pos)  
+print(f"Before: {bin(num)}, After clearing bit {pos}: {bin(new_num)}")
 
-print("After swapping, a =", a, "and b =", b)
-
-
-#4.4 Check if a Bit is Set at a Specific Position.
-num = int(input("Enter a number: "))
-position = int(input("Enter the bit position to check (0-based): "))
-
-if num & (1 << position):
-    print("The bit at position", position, "is set (1).")
-else:
-    print("The bit at position", position, "is not set (0).")
-
-
-#4.5 Set a Specific Bit in a Number.
-num = int(input("Enter a number: "))
-position = int(input("Enter the bit position to set (0-based): "))
-
-num = num | (1 << position)
-print("The new number after setting the bit is:", num)
-
-
-#4.6 Clear a Specific Bit in a Number.
-num = int(input("Enter a number: "))
-position = int(input("Enter the bit position to clear (0-based): "))
-
-num = num & ~(1 << position)
-print("The new number after clearing the bit is:", num)
-
-
-#4.7 Count Set Bits in a Number.
-num = int(input("Enter a number: "))
-set_bits = bin(num).count("1")
-print("The number of set bits is:", set_bits)
-
-
-#4.8 Flip All Bits of a Number.
-num = int(input("Enter a number: "))
-flipped = ~num
-print("Original number:", num)
-print("Flipped number:", flipped)
+# 7. Flip All Bits (Make Negative)
+# Bitwise NOT (~) inverts all bits, effectively making the number negative - (num + 1)
+num = 5  # Try different numbers!
+flipped = ~num  
+print(f"Original: {num}, Flipped: {flipped}")

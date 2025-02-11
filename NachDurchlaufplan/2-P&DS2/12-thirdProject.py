@@ -39,11 +39,6 @@ while True:
     except ValueError:
         print("Error: Please enter a valid number.")
 
-<<<<<<< HEAD
-
-
-
-=======
 # Features
 # Basic Arithmetic Operations:
 # Supports addition, subtraction, multiplication, and division.
@@ -69,4 +64,3 @@ while True:
 # Catches ValueError exceptions to manage invalid numeric inputs.
 # User Interaction:
 # Prompts users for input at every step, ensuring dynamic and personalized interactions.
->>>>>>> 24e39dae881d2a8ddfea838b6b80ca5293a3a5e4
